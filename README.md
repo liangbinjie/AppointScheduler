@@ -7,8 +7,11 @@ Customer Appointment Management Scheduling Software
 ### _Creación de un ejecutable JAR_
 
 Para crear un JAR de un proyecto `Maven` en `NetBeans` puede ser un poco tedioso, ya que puede ocurrir errores como ubicar en dónde se encuentra el archivo [Manifest] (porque no se creó), es posible que también haya documentación obsoleta o mal documentada.
+
 Tantos errores que pueden ocurrir, pues llegamos con un método sencillo para exportar el proyecto en un solo ejecutable.
+
 Desde la página oficial de Oracle, se encuentra una documentación explicando cómo ponemos integrar el plugin de [Apache Maven Assembly Plugin] en el archivo POM de nuestro proyecto y de esa forma hacerle un `build` para que se cree el ejecutable en nuestra carpeta `target` del proyecto. 
+
 A continuación el código que debería tener el POM:
 ```xml
 <project>
@@ -46,12 +49,18 @@ Si no se entendió muy bien la explicación de la documentación, aquí se prove
 
 ## _Envío de un correo con JavaMail_
 Para proyectos en Maven, cuando se utiliza librerías, estas no las podemos descargar e importar cómo se hace con proyectos en Java Ant. Para este caso, tenemos que entrar al [Repositorio de Maven] y buscar la libreria que queremos usar en nuestro proyecto. Al encontrar la librería, nos va a aparecer una tabla con las versiones que tiene, escogemos la que queremos y nos va aparecer un código XML para agregarlo como una [dependencia] al archivo POM del proyecto. 
+
 Durante el proceso de pruebas para entender como funciona el [envio de un correo con JavaMail], se presentaron varios problemas.
+
 El primero es que se necesita ademas de la dependencia de [JavaMail], tambien se necesita la dependencia de [Sun.Mail]
+
 *Error que se presento con Sun.Mail:* `java.lang.noclassdeffounderror: com/sun/mail/util/maillogger`
+
 Para eso, se busco en el repositorio de Maven la dependencia e incluirlo al proyecto.
+
 Luego, el segundo problema que se presentó fue que Google no permite el uso de la contraseña de la cuenta, si no, que se debe de utilizar una contraseña de app, para eso hay que ir a la configuración de cuenta de Google y activar verificación en 2 pasos. Luego de eso, hay que entrar al enlace de https://myaccount.google.com/apppasswords 
 Para generar una [contraseña de 16 digitos] y de esa forma poder logguearse.
+
 A continuación se presenta el código para el envio de un correo simple:
 ```java
 import javax.mail.*;
