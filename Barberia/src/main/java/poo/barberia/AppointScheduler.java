@@ -25,6 +25,9 @@ public class AppointScheduler {
     public void modificarCliente(String email, String nombre, String apellido, String telefono) throws Exception{
         Cliente c = consultarCliente(email);
         c.modificarCliente(email, nombre, apellido, telefono);
+        //Actualizar Map de clientes
+        clientes.remove(email);
+        clientes.put(email, c);
     }
     
     public void eliminarCliente(String email) throws Exception{
