@@ -1,7 +1,11 @@
+poo\barberia\EstadoCita.class
 poo\barberia\Barberia.class
 poo\barberia\Dashboard$2.class
 poo\barberia\Dashboard.class
+poo\barberia\Cliente.class
+poo\barberia\Dashboard$3.class
+poo\barberia\AppointScheduler.class
+poo\barberia\Cita.class
 poo\view\CitasPanel.class
 poo\barberia\Dashboard$1.class
 poo\view\ClientesPanel.class
-poo\barberia\Dashboard$3.class

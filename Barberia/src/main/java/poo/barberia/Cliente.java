@@ -3,6 +3,7 @@
  */
 package poo.barberia;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Cliente {
@@ -10,6 +11,7 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String telefono;
+    private List<Cita> citas;
     
     Cliente(String email, String nombre, String apellido, String telefono) throws Exception{
         boolean emailValido = validEmail(email);

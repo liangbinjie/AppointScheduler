@@ -3,6 +3,7 @@
  */
 package poo.barberia;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,11 +26,16 @@ public class AppointScheduler {
     private Map<String,Horario> horario;
     private Map<String,Cliente> clientes;
     private ArrayList<Cliente> colaEspera;
+<<<<<<< Updated upstream
     private ArrayList<Servicio> servicios;
+=======
+    private Map<String,Cita> citas;
+>>>>>>> Stashed changes
     
-    AppointScheduler(){
-        this.clientes = new HashMap<String,Cliente>();
-        this.colaEspera = new ArrayList<Cliente>();
+    public AppointScheduler(){
+        this.clientes = new HashMap<>();
+        this.colaEspera = new ArrayList<>();
+        this.citas = new HashMap<>();
     }
     
     //Métodos de Clientes
@@ -65,6 +71,66 @@ public class AppointScheduler {
             return c;
         } else {
             throw new Exception("Cliente no encontrado.");
+        }
+    }
+    
+    //Metodos de Cita
+    public void crearCita(String email, LocalDateTime horaCita, 
+            LocalDateTime diaCita) throws Exception {
+        if (!clientes.containsKey(email))
+            throw new Exception("El email de la persona no existe");
+        Cliente cliente = clientes.get(email);
+        citas.put(email, new Cita(cliente, horaCita, diaCita,
+                EstadoCita.CONFIRMADA));
+    }
+    
+    public void modificarCita(String email, Cliente clienteActualizado, LocalDateTime horaCita, 
+            LocalDateTime diaCita) 
+            throws Exception{
+        Cita cita = citas.get(email);
+        if (cita != null) {
+            cita.setCliente(clienteActualizado);
+            cita.setDiaCita(diaCita);
+            cita.setHoraCita(horaCita);
+            System.err.println("Cita modificada exitosamente");
+            }
+        else {
+            throw new Exception("Este usuario no tiene ninguna cita asignada");
+            }
+    }
+    
+    public void eliminarCita (String email) throws Exception {
+        Cita cita = citas.get(email);
+        if (cita != null) {
+            citas.remove(cita);
+            System.out.println("La cita de " + email + "ha sido confirmada");
+        }
+        else {
+            throw new Exception("Este cliente no tiene cita para eliminarse");
+        }
+    }
+    
+    public void consultarCita(String email) throws Exception {
+        Cita cita = citas.get(email);
+        if (cita != null) {
+            System.out.println("email: " + cita);
+            System.out.println("Cliente: " + cita.getCliente());
+            System.out.println("Fecha: " + cita.getDiaCita());
+            System.out.println("Hora: " + cita.getEstadoCita());
+            System.out.println("Estado: " + cita.getEstadoCita());
+        } else {
+            throw new Exception("No se encontró una cita con ID " + email + ".");
+        }
+    }    
+    public void confirmarCita (String email) throws Exception {
+        Cita cita = citas.get(email);
+        if (cita != null && cita.getEstadoCita() == EstadoCita.NO_CONFIRMADA) {
+            cita.confirmarCita();
+            System.out.println("La cita de " + email + "ha sido confirmada");
+        }
+        else {
+            throw new Exception("No se puede confirmar la cita con ID " +
+                    email + ". La cita no existe o ya está confirmada.");
         }
     }
     
