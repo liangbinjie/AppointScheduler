@@ -47,6 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
         adminBtn = new javax.swing.JButton();
         logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        serviceBtn = new javax.swing.JButton();
         contentPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -106,6 +107,19 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BARBERIA POO");
 
+        serviceBtn.setBackground(new java.awt.Color(0, 108, 103));
+        serviceBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        serviceBtn.setForeground(new java.awt.Color(255, 235, 198));
+        serviceBtn.setText("Servicios");
+        serviceBtn.setBorder(null);
+        serviceBtn.setBorderPainted(false);
+        serviceBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        serviceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviceBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
         sidePanelLayout.setHorizontalGroup(
@@ -120,6 +134,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
+            .addComponent(serviceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,15 +143,17 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addGap(55, 55, 55)
+                .addGap(18, 18, 18)
                 .addComponent(clienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(citaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(serviceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(colaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(adminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(88, 88, 88))
         );
 
         bg.add(sidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -173,7 +190,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -186,6 +203,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void citaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_citaBtnActionPerformed
         showPanel(new CitasPanel());
     }//GEN-LAST:event_citaBtnActionPerformed
+
+    private void serviceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceBtnActionPerformed
+        showPanel(new ServiciosPanel());
+    }//GEN-LAST:event_serviceBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +233,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton serviceBtn;
     private javax.swing.JPanel sidePanel;
     // End of variables declaration//GEN-END:variables
 }

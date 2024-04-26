@@ -3,7 +3,9 @@ poo\barberia\EstadoCita.class
 poo\view\ClientesPanel$1.class
 poo\view\Dashboard.class
 poo\barberia\Barberia.class
+poo\view\Dashboard$4.class
 poo\barberia\Cliente.class
+poo\view\ServiciosPanel.class
 poo\barberia\Servicio.class
 poo\barberia\AppointScheduler.class
 poo\barberia\Cita.class
