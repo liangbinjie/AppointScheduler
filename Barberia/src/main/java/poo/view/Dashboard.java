@@ -18,6 +18,7 @@ public class Dashboard extends javax.swing.JFrame {
         this.setTitle("Barberia POO");
         this.setResizable(false);
         this.setIconImage(new ImageIcon("src/main/resources/logo.png").getImage());
+        this.setAlwaysOnTop(true);
     }
     
     public void showPanel(JPanel p) {
@@ -205,7 +206,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_citaBtnActionPerformed
 
     private void serviceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceBtnActionPerformed
-        showPanel(new ServiciosPanel());
+        showPanel(new ServiciosPanel(this));
     }//GEN-LAST:event_serviceBtnActionPerformed
 
     /**

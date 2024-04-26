@@ -123,6 +123,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="Buscar Servicio"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="modifyBtn">
               <Properties>
@@ -145,7 +148,7 @@
             <Component class="javax.swing.JButton" name="createBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\123\Documents\Codes\AppointScheduler\Barberia\src\main\resources\crear.png"/>
+                  <Image iconType="2" name="C:\Users\123\Documents\Codes\AppointScheduler\Barberia\src\main\resources\anadir.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Crear Servicio"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>

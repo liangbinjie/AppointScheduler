@@ -1,16 +1,21 @@
 package poo.view;
 
+import javax.swing.JFrame;
+import poo.view.servicios.BuscarServicioPanel;
+
 /**
  *
  * @author 123
  */
 public class ServiciosPanel extends javax.swing.JPanel {
+    JFrame parent;
 
     /**
      * Creates new form HomePanel
      */
-    public ServiciosPanel() {
+    public ServiciosPanel(JFrame parent) {
         initComponents();
+        this.parent = parent;
     }
 
     /**
@@ -51,6 +56,11 @@ public class ServiciosPanel extends javax.swing.JPanel {
         searchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\buscar.png")); // NOI18N
         searchBtn.setToolTipText("Buscar Servicio");
         searchBtn.setContentAreaFilled(false);
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         modifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\NetBeansProjects\\Barberia\\src\\main\\resources\\pencil.png")); // NOI18N
         modifyBtn.setToolTipText("Modificar Servicio");
@@ -60,7 +70,7 @@ public class ServiciosPanel extends javax.swing.JPanel {
         deleteBtn.setToolTipText("Eliminar Servicio");
         deleteBtn.setContentAreaFilled(false);
 
-        createBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\crear.png")); // NOI18N
+        createBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\anadir.png")); // NOI18N
         createBtn.setToolTipText("Crear Servicio");
         createBtn.setContentAreaFilled(false);
 
@@ -114,6 +124,11 @@ public class ServiciosPanel extends javax.swing.JPanel {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        BuscarServicioPanel v = new BuscarServicioPanel(parent);
+        v.setVisible(true);
+    }//GEN-LAST:event_searchBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
