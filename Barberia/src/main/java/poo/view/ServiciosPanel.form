@@ -135,6 +135,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="Modificar Servicio"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="deleteBtn">
               <Properties>
@@ -144,6 +147,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="Eliminar Servicio"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="createBtn">
               <Properties>
@@ -153,6 +159,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="Crear Servicio"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

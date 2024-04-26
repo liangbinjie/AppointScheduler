@@ -2,6 +2,9 @@ package poo.view;
 
 import javax.swing.JFrame;
 import poo.view.servicios.BuscarServicioPanel;
+import poo.view.servicios.CrearServicioPanel;
+import poo.view.servicios.EliminarServicio;
+import poo.view.servicios.ModificarServicio;
 
 /**
  *
@@ -65,14 +68,29 @@ public class ServiciosPanel extends javax.swing.JPanel {
         modifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\NetBeansProjects\\Barberia\\src\\main\\resources\\pencil.png")); // NOI18N
         modifyBtn.setToolTipText("Modificar Servicio");
         modifyBtn.setContentAreaFilled(false);
+        modifyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         deleteBtn.setToolTipText("Eliminar Servicio");
         deleteBtn.setContentAreaFilled(false);
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         createBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\anadir.png")); // NOI18N
         createBtn.setToolTipText("Crear Servicio");
         createBtn.setContentAreaFilled(false);
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnPanelLayout = new javax.swing.GroupLayout(btnPanel);
         btnPanel.setLayout(btnPanelLayout);
@@ -129,6 +147,21 @@ public class ServiciosPanel extends javax.swing.JPanel {
         BuscarServicioPanel v = new BuscarServicioPanel(parent);
         v.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        CrearServicioPanel v = new CrearServicioPanel(parent);
+        v.setVisible(true);
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
+        ModificarServicio v = new ModificarServicio(parent);
+        v.setVisible(true);
+    }//GEN-LAST:event_modifyBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        EliminarServicio v = new EliminarServicio(parent);
+        v.setVisible(true);
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
