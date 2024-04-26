@@ -26,11 +26,8 @@ public class AppointScheduler {
     private Map<String,Horario> horario;
     private Map<String,Cliente> clientes;
     private ArrayList<Cliente> colaEspera;
-<<<<<<< Updated upstream
     private ArrayList<Servicio> servicios;
-=======
     private Map<String,Cita> citas;
->>>>>>> Stashed changes
     
     public AppointScheduler(){
         this.clientes = new HashMap<>();

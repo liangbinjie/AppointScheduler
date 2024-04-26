@@ -1,4 +1,4 @@
-package poo.barberia;
+package poo.view;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
