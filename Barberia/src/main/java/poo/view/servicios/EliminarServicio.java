@@ -2,6 +2,9 @@
 package poo.view.servicios;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import poo.barberia.AppointScheduler;
+import poo.barberia.Servicio;
 
 public class EliminarServicio extends javax.swing.JFrame {
     JFrame parent;
@@ -12,7 +15,6 @@ public class EliminarServicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.parent = parent;
         this.parent.setEnabled(false);
-        this.setAlwaysOnTop(true);
     }
 
     /**
@@ -45,12 +47,22 @@ public class EliminarServicio extends javax.swing.JFrame {
         jLabel2.setText("ID:");
 
         searchBtn.setText("Buscar");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nombre:");
 
         nameField.setEnabled(false);
 
         deleteBtn.setText("Eliminar");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +110,21 @@ public class EliminarServicio extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         this.parent.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        AppointScheduler c = AppointScheduler.getInstance();
+        Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
+        this.nameField.setText(s.getNombre());
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        AppointScheduler c = AppointScheduler.getInstance();
+        try {
+        c.eliminarServicio(Integer.parseInt(idField.getText()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No hay ID del servicio");
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

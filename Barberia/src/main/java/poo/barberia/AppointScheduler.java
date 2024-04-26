@@ -3,6 +3,10 @@
  */
 package poo.barberia;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,11 +32,28 @@ public class AppointScheduler {
     private ArrayList<Cliente> colaEspera;
     private ArrayList<Servicio> servicios;
     private Map<String,Cita> citas;
+    private static AppointScheduler instance = null;
+    
+    public static AppointScheduler getInstance() {
+        if (instance == null) {
+            try{
+                System.out.println("Cargando de disco...");
+                instance = cargarDatos();
+            }
+            catch (Exception e) {
+                System.out.println("Creando instancia nueva...");
+                instance = new AppointScheduler();
+            }
+        }
+        return instance;
+    }
     
     public AppointScheduler(){
         this.clientes = new HashMap<>();
         this.colaEspera = new ArrayList<>();
         this.citas = new HashMap<>();
+        this.servicios = new ArrayList<Servicio>();
+                
     }
     
     //Métodos de Clientes
@@ -201,7 +222,7 @@ public class AppointScheduler {
             mostrarMensajeExitoso("Servicio eliminado");
         } catch (Exception ex) {
             mostrarMensajeError("No se pudo eliminar el servicio");
-        }
+        } 
     }
     
     
@@ -256,5 +277,22 @@ public class AppointScheduler {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+    
+    public static AppointScheduler cargarDatos() throws FileNotFoundException, IOException, ClassNotFoundException {
+        AppointScheduler control = new AppointScheduler();
+        try {
+            FileInputStream file = new FileInputStream("control.bin");
+            ObjectInputStream stream = new ObjectInputStream(file);
+//            AppointScheduler control = (AppointScheduler)stream.readObject();
+            stream.close();
+            file.close();
+    //        control.reasignarConsecutivoBlog();
+            return control;
+        } catch (Exception e) {
+            
+        }
+        return control;
+            
     }
 }

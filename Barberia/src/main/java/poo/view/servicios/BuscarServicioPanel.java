@@ -2,6 +2,8 @@
 package poo.view.servicios;
 
 import javax.swing.JFrame;
+import poo.barberia.AppointScheduler;
+import poo.barberia.Servicio;
 
 public class BuscarServicioPanel extends javax.swing.JFrame {
     JFrame parent;
@@ -12,7 +14,6 @@ public class BuscarServicioPanel extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.parent = parent;
         this.parent.setEnabled(false);
-        this.setAlwaysOnTop(true);
     }
 
     /**
@@ -44,9 +45,15 @@ public class BuscarServicioPanel extends javax.swing.JFrame {
         jLabel2.setText("ID:");
 
         searchBtn.setText("Buscar");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nombre:");
 
+        nameField.setForeground(new java.awt.Color(0, 0, 0));
         nameField.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +97,12 @@ public class BuscarServicioPanel extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         this.parent.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        AppointScheduler c = AppointScheduler.getInstance();
+        Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
+        this.nameField.setText(s.getNombre());
+    }//GEN-LAST:event_searchBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

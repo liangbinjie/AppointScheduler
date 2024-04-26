@@ -2,6 +2,9 @@
 package poo.view.servicios;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import poo.barberia.AppointScheduler;
+import poo.barberia.Servicio;
 
 public class CrearServicioPanel extends javax.swing.JFrame {
     JFrame parent;
@@ -12,7 +15,6 @@ public class CrearServicioPanel extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.parent = parent;
         this.parent.setEnabled(false);
-        this.setAlwaysOnTop(true);
     }
 
     /**
@@ -25,7 +27,7 @@ public class CrearServicioPanel extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        idField = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -40,6 +42,11 @@ public class CrearServicioPanel extends javax.swing.JFrame {
         jLabel1.setText("Crear Servicio");
 
         searchBtn.setText("Agregar");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nombre:");
 
@@ -52,7 +59,7 @@ public class CrearServicioPanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
@@ -67,7 +74,7 @@ public class CrearServicioPanel extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBtn))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -79,11 +86,17 @@ public class CrearServicioPanel extends javax.swing.JFrame {
         this.parent.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
 
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        AppointScheduler c = AppointScheduler.getInstance();
+        c.crearServicio(this.nameField.getText());
+        this.dispose();
+    }//GEN-LAST:event_searchBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField nameField;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
 }
