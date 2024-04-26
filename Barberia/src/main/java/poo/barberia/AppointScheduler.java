@@ -50,8 +50,8 @@ public class AppointScheduler {
     }
     
     public void eliminarCliente(String email) throws Exception{
-        if(existeCliente(email) && existeClienteColaEspera(email) && true){
-            // Falta validar que no tenga citas asignadas en el futuro
+        Cita cita = citas.get(email);
+        if(existeCliente(email) && existeClienteColaEspera(email) && cita == null){
             clientes.remove(email);
         } else {
             throw new Exception("Cliente no eliminado.");
