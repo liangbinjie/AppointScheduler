@@ -197,7 +197,7 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteBtnActionPerformed
-        showPanel(new ClientesPanel());
+        showPanel(new ClientesPanel(this));
     }//GEN-LAST:event_clienteBtnActionPerformed
 
     private void citaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_citaBtnActionPerformed

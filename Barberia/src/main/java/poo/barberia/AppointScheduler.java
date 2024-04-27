@@ -58,8 +58,12 @@ public class AppointScheduler {
     
     //Métodos de Clientes
     public void crearCliente(String email, String nombre, String apellido, String telefono) throws Exception{
-        Cliente c = new Cliente(email, nombre, apellido, telefono);
-        clientes.put(email, c);
+        if(!clientes.containsKey(email)){
+            Cliente c = new Cliente(email, nombre, apellido, telefono);
+            clientes.put(email, c);
+        } else {
+            throw new Exception("El cliente especificado ya se encuentra dentro del sistema.");
+        }
     }
     
     public void modificarCliente(String email, String nombre, String apellido, String telefono) throws Exception{
@@ -72,10 +76,14 @@ public class AppointScheduler {
     
     public void eliminarCliente(String email) throws Exception{
         Cita cita = citas.get(email);
-        if(existeCliente(email) && existeClienteColaEspera(email) && cita == null){
+        if(existeCliente(email) && !existeClienteColaEspera(email) && cita == null){
             clientes.remove(email);
         } else {
-            throw new Exception("Cliente no eliminado.");
+            if(existeClienteColaEspera(email)){
+                throw new Exception("El cliente e encuentra en la lista de espera.");
+            } else {
+                throw new Exception("El usuario tiene alguna cita programada.");
+            }
         }
     }
     

@@ -188,11 +188,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="logo">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\123\Documents\NetBeansProjects\Barberia\src\main\resources\logo.png"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>

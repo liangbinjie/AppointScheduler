@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package poo.view;
 
 /**
  *
  * @author 123
  */
+import javax.swing.JFrame;
+import poo.view.clientes.ConsultarCliente;
+import poo.view.clientes.CrearCliente;
+import poo.view.clientes.EliminarCliente;
+import poo.view.clientes.ModificarCliente;
+
 public class ClientesPanel extends javax.swing.JPanel {
+    JFrame parent;
 
     /**
      * Creates new form HomePanel
      */
-    public ClientesPanel() {
+    public ClientesPanel(JFrame parent) {
         initComponents();
+        this.parent = parent;
     }
 
     /**
@@ -52,21 +57,38 @@ public class ClientesPanel extends javax.swing.JPanel {
 
         btnPanel.setBackground(new java.awt.Color(0, 108, 103));
 
-        searchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\buscar.png")); // NOI18N
         searchBtn.setToolTipText("Buscar Cliente");
         searchBtn.setContentAreaFilled(false);
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
-        modifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\NetBeansProjects\\Barberia\\src\\main\\resources\\pencil.png")); // NOI18N
         modifyBtn.setToolTipText("Modificar Cliente");
         modifyBtn.setContentAreaFilled(false);
+        modifyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         deleteBtn.setToolTipText("Eliminar Cliente");
         deleteBtn.setContentAreaFilled(false);
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
-        createBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\crear.png")); // NOI18N
         createBtn.setToolTipText("Crear Cliente");
         createBtn.setContentAreaFilled(false);
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnPanelLayout = new javax.swing.GroupLayout(btnPanel);
         btnPanel.setLayout(btnPanelLayout);
@@ -137,6 +159,26 @@ public class ClientesPanel extends javax.swing.JPanel {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        ConsultarCliente ventana = new ConsultarCliente(parent);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        CrearCliente ventana = new CrearCliente(parent);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
+        ModificarCliente ventana = new ModificarCliente(parent);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_modifyBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        EliminarCliente ventana = new EliminarCliente(parent);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
