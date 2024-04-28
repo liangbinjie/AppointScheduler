@@ -1,6 +1,8 @@
 
 package poo.view.servicios;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import poo.barberia.AppointScheduler;
@@ -15,8 +17,20 @@ public class ModificarServicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.parent = parent;
         this.parent.setEnabled(false);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Cambio aquí
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                cerrarVentana(); // Nuevo método para cerrar la ventana
+            }
+        });
     }
-
+    
+    private void cerrarVentana() {
+        this.parent.setEnabled(true);
+        dispose(); // Cierra la ventana actual
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

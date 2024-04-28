@@ -3,10 +3,13 @@
  */
 package poo.view.clientes;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import poo.barberia.AppointScheduler;
 
 public class CrearCliente extends javax.swing.JFrame {
@@ -18,6 +21,18 @@ public class CrearCliente extends javax.swing.JFrame {
     public CrearCliente(JFrame parent) {
         initComponents();
         this.parent = parent;
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Cambio aquí
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                cerrarVentana(); // Nuevo método para cerrar la ventana
+            }
+        });
+    }
+    
+    private void cerrarVentana() {
+        this.parent.setEnabled(true);
+        dispose(); // Cierra la ventana actual
     }
 
     /**
