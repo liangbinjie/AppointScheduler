@@ -10,17 +10,22 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import javax.swing.table.DefaultTableModel;
 import poo.barberia.AppointScheduler;
+import poo.view.ClientesPanel;
 
 public class CrearCliente extends javax.swing.JFrame {
     JFrame parent;
+    ClientesPanel clientesPanel;
+
 
     /**
      * Creates new form InformacionCliente
      */
-    public CrearCliente(JFrame parent) {
+    public CrearCliente(ClientesPanel parent) {
         initComponents();
-        this.parent = parent;
+        this.clientesPanel = parent;
+
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Cambio aquí
         addWindowListener(new WindowAdapter() {
             @Override
@@ -159,6 +164,12 @@ public class CrearCliente extends javax.swing.JFrame {
         String apellido = txtApellido.getText();
         String telefono = txtTelefono.getText();
         try {
+            Object[] data = {email, nombre, apellido, telefono};
+
+            DefaultTableModel tableModel = clientesPanel.getTableModel();
+            tableModel.addRow(data);
+
+            
             a.crearCliente(email, nombre, apellido, telefono);
             JOptionPane.showMessageDialog(this, "Cliente creado.");
             this.dispose();

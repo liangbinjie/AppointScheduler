@@ -6,6 +6,7 @@ package poo.view;
  * @author 123
  */
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import poo.view.clientes.ConsultarCliente;
 import poo.view.clientes.CrearCliente;
 import poo.view.clientes.EliminarCliente;
@@ -125,23 +126,15 @@ public class ClientesPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Email", "Nombre", "Telefono"
+                "Email", "Nombre", "Apellido", "Telefono"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
@@ -166,7 +159,7 @@ public class ClientesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        CrearCliente ventana = new CrearCliente(parent);
+        CrearCliente ventana = new CrearCliente(this);
         ventana.setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
@@ -180,6 +173,9 @@ public class ClientesPanel extends javax.swing.JPanel {
         ventana.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
+    public DefaultTableModel getTableModel() {
+        return (DefaultTableModel) jTable1.getModel();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnPanel;
@@ -194,4 +190,8 @@ public class ClientesPanel extends javax.swing.JPanel {
     private javax.swing.JButton modifyBtn;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
+
+    public Object getClientesPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
