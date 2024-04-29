@@ -1,6 +1,7 @@
 package poo.view;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import poo.barberia.AppointScheduler;
 
@@ -134,6 +135,7 @@ public class AdminPanel extends javax.swing.JPanel {
                     Integer.valueOf(mt.getValueAt(row, 2).toString()),
                     Boolean.valueOf(mt.getValueAt(row, 3).toString()));
         }
+        JOptionPane.showMessageDialog(null, "Horario actualizado");
     }//GEN-LAST:event_setBtnActionPerformed
 
 
