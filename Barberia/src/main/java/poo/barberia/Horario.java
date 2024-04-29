@@ -10,7 +10,14 @@ public class Horario {
         this.dia = dia;
         this.horaApertura = horaApertura;
         this.horaCierre = horaCierre;
-        this.cerrado = false;
+        this.cerrado = cerrado;
+    }
+    
+    public Horario(String dia) {
+        this.dia = dia;
+        this.horaApertura = 0;
+        this.horaCierre = 0;
+        this.cerrado = true;
     }
 
     public String getDia() {

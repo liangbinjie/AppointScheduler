@@ -49,11 +49,15 @@ public class AppointScheduler {
     }
     
     public AppointScheduler(){
+        String dias[] = {"Lunes","Martes","Miercoles", "Jueves","Viernes","Sabado","Domingo"};
         this.clientes = new HashMap<>();
         this.colaEspera = new ArrayList<>();
         this.citas = new HashMap<>();
+        this.horario = new HashMap<>();
         this.servicios = new ArrayList<Servicio>();
-                
+        for (String dia: dias) {
+            horario.put(dia, new Horario(dia));
+        }
     }
     
     //Métodos de Clientes
@@ -233,6 +237,10 @@ public class AppointScheduler {
         } 
     }
     
+    public ArrayList<Servicio> obtenerListaServicios() {
+        return servicios;
+    }
+    
     
 // *************** SECCION HORARIO ****************
     public void establecerHorario() {
@@ -302,5 +310,13 @@ public class AppointScheduler {
         }
         return control;
             
+    }
+    
+    public Map<String, Horario> getHorario() {
+        return horario;
+    }
+    
+    public void establecerHorario(String dia,int horaApertura, int horaCierre, boolean cerrado) {
+        horario.replace(dia, new Horario(dia, horaApertura, horaCierre, cerrado));
     }
 }

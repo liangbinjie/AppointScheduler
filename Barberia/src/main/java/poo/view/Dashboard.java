@@ -99,8 +99,13 @@ public class Dashboard extends javax.swing.JFrame {
         adminBtn.setBorder(null);
         adminBtn.setBorderPainted(false);
         adminBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminBtnActionPerformed(evt);
+            }
+        });
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\NetBeansProjects\\Barberia\\src\\main\\resources\\logo.png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\logo.png")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 235, 198));
@@ -140,7 +145,7 @@ public class Dashboard extends javax.swing.JFrame {
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -207,6 +212,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void serviceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceBtnActionPerformed
         showPanel(new ServiciosPanel(this));
     }//GEN-LAST:event_serviceBtnActionPerformed
+
+    private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
+        showPanel(new AdminPanel(this));
+    }//GEN-LAST:event_adminBtnActionPerformed
 
     /**
      * @param args the command line arguments
