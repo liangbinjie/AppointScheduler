@@ -91,6 +91,11 @@ public class Dashboard extends javax.swing.JFrame {
         colaBtn.setBorder(null);
         colaBtn.setBorderPainted(false);
         colaBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        colaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colaBtnActionPerformed(evt);
+            }
+        });
 
         adminBtn.setBackground(new java.awt.Color(0, 108, 103));
         adminBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
@@ -216,6 +221,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
         showPanel(new AdminPanel(this));
     }//GEN-LAST:event_adminBtnActionPerformed
+
+    private void colaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colaBtnActionPerformed
+        showPanel(new ListaEspera(this));
+    }//GEN-LAST:event_colaBtnActionPerformed
 
     /**
      * @param args the command line arguments
