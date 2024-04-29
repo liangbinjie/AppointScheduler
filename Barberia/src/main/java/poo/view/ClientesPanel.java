@@ -58,6 +58,7 @@ public class ClientesPanel extends javax.swing.JPanel {
 
         btnPanel.setBackground(new java.awt.Color(0, 108, 103));
 
+        searchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\buscar.png")); // NOI18N
         searchBtn.setToolTipText("Buscar Cliente");
         searchBtn.setContentAreaFilled(false);
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -66,6 +67,7 @@ public class ClientesPanel extends javax.swing.JPanel {
             }
         });
 
+        modifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\pencil.png")); // NOI18N
         modifyBtn.setToolTipText("Modificar Cliente");
         modifyBtn.setContentAreaFilled(false);
         modifyBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +85,7 @@ public class ClientesPanel extends javax.swing.JPanel {
             }
         });
 
+        createBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\crear.png")); // NOI18N
         createBtn.setToolTipText("Crear Cliente");
         createBtn.setContentAreaFilled(false);
         createBtn.addActionListener(new java.awt.event.ActionListener() {
