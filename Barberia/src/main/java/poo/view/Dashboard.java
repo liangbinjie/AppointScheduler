@@ -2,13 +2,16 @@ package poo.view;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import poo.barberia.AppointScheduler;
 import poo.view.CitasPanel;
 import poo.view.ClientesPanel;
 
 public class Dashboard extends javax.swing.JFrame {
-
     /**
      * Creates new form Dashboard
      */
@@ -52,6 +55,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -225,6 +233,15 @@ public class Dashboard extends javax.swing.JFrame {
     private void colaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colaBtnActionPerformed
         showPanel(new ListaEspera(this));
     }//GEN-LAST:event_colaBtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        AppointScheduler c = AppointScheduler.getInstance();
+        try {
+            AppointScheduler.guardarDatos(c);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

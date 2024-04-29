@@ -5,8 +5,11 @@ package poo.barberia;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +27,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
 
-public class AppointScheduler {
+public class AppointScheduler implements Serializable {
     private String contrasenaCorreo = "hfvcynqXnF3A5n7M";
     private String usuarioCorreo = "MS_pM6Ot7@trial-351ndgwq8zrgzqx8.mlsender.net";
     private Map<String,Horario> horario;
@@ -242,11 +245,7 @@ public class AppointScheduler {
     }
     
     
-// *************** SECCION HORARIO ****************
-    public void establecerHorario() {
-        
-    }
-    
+// *************** SECCION ADMINISTRACION ****************
     public void sendEmail(ArrayList listaCitasNoConfirmadas) {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.mailersend.net");
@@ -300,16 +299,26 @@ public class AppointScheduler {
         try {
             FileInputStream file = new FileInputStream("control.bin");
             ObjectInputStream stream = new ObjectInputStream(file);
-//            AppointScheduler control = (AppointScheduler)stream.readObject();
+            control = (AppointScheduler)stream.readObject();
             stream.close();
             file.close();
-    //        control.reasignarConsecutivoBlog();
             return control;
         } catch (Exception e) {
-            
+            System.out.println("No se encontro archivo de carga");
         }
-        return control;
-            
+        return control;  
+    }
+    
+    public static void guardarDatos(AppointScheduler data) throws FileNotFoundException, IOException {
+        try {
+            FileOutputStream file = new FileOutputStream("control.bin");
+            ObjectOutputStream stream = new ObjectOutputStream(file);
+            stream.writeObject(data);
+            stream.close();
+            file.close();
+        } catch (Exception ex) {
+            System.out.println("Hubo un problema al guardar los datos: " + ex);
+        }
     }
     
     public Map<String, Horario> getHorario() {

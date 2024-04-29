@@ -3,10 +3,11 @@
  */
 package poo.barberia;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class Cliente {
+public class Cliente implements Serializable {
     private String email;
     private String nombre;
     private String apellido;

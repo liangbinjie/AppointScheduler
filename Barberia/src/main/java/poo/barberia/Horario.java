@@ -1,6 +1,8 @@
 package poo.barberia;
 
-public class Horario {
+import java.io.Serializable;
+
+public class Horario implements Serializable {
     private String dia;
     private int horaApertura;
     private int horaCierre;

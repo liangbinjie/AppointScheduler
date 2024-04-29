@@ -1,11 +1,12 @@
 package poo.barberia;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 /**
  *
  * @author Armando Garcia
  */
-public class Cita {
+public class Cita implements Serializable {
         private LocalDateTime horaCita;
         private LocalDateTime diaCita;
         private Cliente cliente;
