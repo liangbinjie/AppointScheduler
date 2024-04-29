@@ -4,6 +4,7 @@ package poo.view.servicios;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import poo.barberia.AppointScheduler;
 import poo.barberia.Servicio;
@@ -115,8 +116,14 @@ public class BuscarServicioPanel extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         AppointScheduler c = AppointScheduler.getInstance();
-        Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
-        this.nameField.setText(s.getNombre());
+        try {
+            Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
+            this.nameField.setText(s.getNombre());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No hay ID especificado");
+        }
+        
+        
     }//GEN-LAST:event_searchBtnActionPerformed
 
 

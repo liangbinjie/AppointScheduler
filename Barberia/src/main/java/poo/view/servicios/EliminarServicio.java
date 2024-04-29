@@ -134,7 +134,11 @@ public class EliminarServicio extends javax.swing.JFrame {
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         AppointScheduler c = AppointScheduler.getInstance();
         try {
-        c.eliminarServicio(Integer.parseInt(idField.getText()));
+            int input = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar este servicio?");
+            if (input == 0) {
+                c.eliminarServicio(Integer.parseInt(idField.getText()));
+            }
+            cerrarVentana();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No hay ID del servicio");
         }

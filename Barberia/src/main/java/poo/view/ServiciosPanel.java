@@ -1,6 +1,9 @@
 package poo.view;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import poo.barberia.AppointScheduler;
+import poo.barberia.Servicio;
 import poo.view.servicios.BuscarServicioPanel;
 import poo.view.servicios.CrearServicioPanel;
 import poo.view.servicios.EliminarServicio;
@@ -11,7 +14,7 @@ import poo.view.servicios.ModificarServicio;
  * @author 123
  */
 public class ServiciosPanel extends javax.swing.JPanel {
-    JFrame parent;
+    private JFrame parent;
 
     /**
      * Creates new form HomePanel
@@ -19,6 +22,19 @@ public class ServiciosPanel extends javax.swing.JPanel {
     public ServiciosPanel(JFrame parent) {
         initComponents();
         this.parent = parent;
+        actualizarTabla();
+        
+    }
+    
+    private void actualizarTabla() {
+        DefaultTableModel mt = (DefaultTableModel) tabla.getModel();
+        AppointScheduler c = AppointScheduler.getInstance();
+        
+        int cont = 1;
+        for (Servicio s: c.obtenerListaServicios()) {
+            mt.addRow(new Object[] {cont, s.getNombre()});
+            cont++;
+        }
     }
 
     /**
@@ -38,9 +54,10 @@ public class ServiciosPanel extends javax.swing.JPanel {
         modifyBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
+        refreshBtn = new javax.swing.JButton();
         controlMsg = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(620, 550));
 
@@ -92,6 +109,15 @@ public class ServiciosPanel extends javax.swing.JPanel {
             }
         });
 
+        refreshBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\refresh.png")); // NOI18N
+        refreshBtn.setToolTipText("Refrescar tabla");
+        refreshBtn.setContentAreaFilled(false);
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout btnPanelLayout = new javax.swing.GroupLayout(btnPanel);
         btnPanel.setLayout(btnPanelLayout);
         btnPanelLayout.setHorizontalGroup(
@@ -102,7 +128,8 @@ public class ServiciosPanel extends javax.swing.JPanel {
                     .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnPanelLayout.setVerticalGroup(
@@ -116,18 +143,43 @@ public class ServiciosPanel extends javax.swing.JPanel {
                 .addComponent(modifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        jPanel1.add(btnPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, -1, -1));
+        jPanel1.add(btnPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, -1, 400));
 
         controlMsg.setForeground(new java.awt.Color(255, 102, 51));
         controlMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(controlMsg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 476, 550, -1));
 
-        jScrollPane2.setViewportView(jList1);
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 460, 400));
+            },
+            new String [] {
+                "ID", "Servicio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -163,6 +215,12 @@ public class ServiciosPanel extends javax.swing.JPanel {
         v.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        DefaultTableModel mt = (DefaultTableModel) tabla.getModel();
+        mt.setRowCount(0);
+        actualizarTabla();
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnPanel;
@@ -170,11 +228,12 @@ public class ServiciosPanel extends javax.swing.JPanel {
     private javax.swing.JButton createBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton modifyBtn;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

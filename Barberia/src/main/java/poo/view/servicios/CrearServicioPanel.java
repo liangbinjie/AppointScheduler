@@ -104,7 +104,7 @@ public class CrearServicioPanel extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         AppointScheduler c = AppointScheduler.getInstance();
         c.crearServicio(this.nameField.getText());
-        this.dispose();
+        cerrarVentana();
     }//GEN-LAST:event_searchBtnActionPerformed
 
 

@@ -1,4 +1,3 @@
-
 package poo.view.servicios;
 
 import java.awt.event.WindowAdapter;
@@ -125,14 +124,19 @@ public class ModificarServicio extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         AppointScheduler c = AppointScheduler.getInstance();
-        Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
-        this.nameField.setText(s.getNombre());
+        try {
+            Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
+            this.nameField.setText(s.getNombre());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No hay ID especificado");
+        }
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void changeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBtnActionPerformed
         AppointScheduler c = AppointScheduler.getInstance();
         try {
             c.modificarServicio(Integer.parseInt(idField.getText()), this.nameField.getText());
+            cerrarVentana();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No hay ID especificado");
         }
