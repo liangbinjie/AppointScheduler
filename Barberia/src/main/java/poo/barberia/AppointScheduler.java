@@ -107,6 +107,10 @@ public class AppointScheduler implements Serializable {
         }
     }
     
+    public HashMap<String, Cliente> obtenerListaClientes() {
+        return (HashMap<String, Cliente>) clientes;
+    }
+    
     //Metodos de Cita
     public void crearCita(String email, LocalDateTime horaCita, 
             LocalDateTime diaCita) throws Exception {

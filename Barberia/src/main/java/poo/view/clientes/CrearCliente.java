@@ -168,7 +168,6 @@ public class CrearCliente extends javax.swing.JFrame {
 
             DefaultTableModel tableModel = clientesPanel.getTableModel();
             tableModel.addRow(data);
-
             
             a.crearCliente(email, nombre, apellido, telefono);
             JOptionPane.showMessageDialog(this, "Cliente creado.");

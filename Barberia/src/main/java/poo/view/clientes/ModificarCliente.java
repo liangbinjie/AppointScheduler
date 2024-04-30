@@ -12,16 +12,18 @@ import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import poo.barberia.AppointScheduler;
 import poo.barberia.Cliente;
+import poo.view.ClientesPanel;
 
 public class ModificarCliente extends javax.swing.JFrame {
     JFrame parent;
+    ClientesPanel clientesPanel;
 
     /**
      * Creates new form InformacionCliente
      */
-    public ModificarCliente(JFrame parent) {
+    public ModificarCliente(ClientesPanel parent) {
         initComponents();
-        this.parent = parent;
+        this.clientesPanel = parent;
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Cambio aquí
         addWindowListener(new WindowAdapter() {
             @Override

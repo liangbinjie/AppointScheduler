@@ -117,9 +117,6 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="searchBtn">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\123\Documents\Codes\AppointScheduler\Barberia\src\main\resources\buscar.png"/>
-                </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Buscar Cliente"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
@@ -129,9 +126,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="modifyBtn">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\123\Documents\Codes\AppointScheduler\Barberia\src\main\resources\pencil.png"/>
-                </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Modificar Cliente"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
@@ -153,9 +147,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="createBtn">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\123\Documents\Codes\AppointScheduler\Barberia\src\main\resources\crear.png"/>
-                </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Crear Cliente"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
@@ -190,10 +181,10 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tablaCientes">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
+                  <Table columnCount="4" rowCount="0">
                     <Column editable="true" title="Email" type="java.lang.Object"/>
                     <Column editable="true" title="Nombre" type="java.lang.Object"/>
                     <Column editable="true" title="Apellido" type="java.lang.Object"/>

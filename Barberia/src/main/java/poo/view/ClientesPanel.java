@@ -5,8 +5,12 @@ package poo.view;
  *
  * @author 123
  */
+import java.util.HashMap;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import poo.barberia.AppointScheduler;
+import poo.barberia.Cliente;
 import poo.view.clientes.ConsultarCliente;
 import poo.view.clientes.CrearCliente;
 import poo.view.clientes.EliminarCliente;
@@ -14,15 +18,34 @@ import poo.view.clientes.ModificarCliente;
 
 public class ClientesPanel extends javax.swing.JPanel {
     JFrame parent;
-
     /**
      * Creates new form HomePanel
+     * @param parent
      */
     public ClientesPanel(JFrame parent) {
         initComponents();
         this.parent = parent;
+        actualizarTabla();
     }
-
+    
+    private void actualizarTabla() {
+        DefaultTableModel tablaClientes = (DefaultTableModel)tablaCientes.getModel();
+        AppointScheduler as = AppointScheduler.getInstance();
+        HashMap <String, Cliente> listaClientes = as.obtenerListaClientes();
+        
+        tablaClientes.setRowCount(0);
+        
+        for (HashMap.Entry<String, Cliente> entry : listaClientes.entrySet()) {
+            Cliente c = entry.getValue();
+            Object[] fila = new Object[4];
+            fila[0] = c.getEmail();
+            fila[1] = c.getNombre();
+            fila[2] = c.getApellido();
+            fila[3] = c.getTelefono();
+            tablaClientes.addRow(fila);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +65,7 @@ public class ClientesPanel extends javax.swing.JPanel {
         createBtn = new javax.swing.JButton();
         controlMsg = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaCientes = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(620, 550));
 
@@ -58,7 +81,6 @@ public class ClientesPanel extends javax.swing.JPanel {
 
         btnPanel.setBackground(new java.awt.Color(0, 108, 103));
 
-        searchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\buscar.png")); // NOI18N
         searchBtn.setToolTipText("Buscar Cliente");
         searchBtn.setContentAreaFilled(false);
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +89,6 @@ public class ClientesPanel extends javax.swing.JPanel {
             }
         });
 
-        modifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\pencil.png")); // NOI18N
         modifyBtn.setToolTipText("Modificar Cliente");
         modifyBtn.setContentAreaFilled(false);
         modifyBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +106,6 @@ public class ClientesPanel extends javax.swing.JPanel {
             }
         });
 
-        createBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\crear.png")); // NOI18N
         createBtn.setToolTipText("Crear Cliente");
         createBtn.setContentAreaFilled(false);
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,18 +147,15 @@ public class ClientesPanel extends javax.swing.JPanel {
         controlMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(controlMsg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 476, 550, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Email", "Nombre", "Apellido", "Telefono"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaCientes);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
@@ -157,7 +174,7 @@ public class ClientesPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        ConsultarCliente ventana = new ConsultarCliente(parent);
+        ConsultarCliente ventana = new ConsultarCliente(this);
         ventana.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
@@ -167,17 +184,17 @@ public class ClientesPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
-        ModificarCliente ventana = new ModificarCliente(parent);
+        ModificarCliente ventana = new ModificarCliente(this);
         ventana.setVisible(true);
     }//GEN-LAST:event_modifyBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        EliminarCliente ventana = new EliminarCliente(parent);
+        EliminarCliente ventana = new EliminarCliente(this);
         ventana.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     public DefaultTableModel getTableModel() {
-        return (DefaultTableModel) jTable1.getModel();
+        return (DefaultTableModel) tablaCientes.getModel();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -189,9 +206,9 @@ public class ClientesPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton modifyBtn;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JTable tablaCientes;
     // End of variables declaration//GEN-END:variables
 
     public Object getClientesPanel() {
