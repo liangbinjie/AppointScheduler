@@ -21,6 +21,7 @@ public class CrearCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form InformacionCliente
+     * @param parent
      */
     public CrearCliente(ClientesPanel parent) {
         initComponents();
@@ -62,6 +63,7 @@ public class CrearCliente extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setText("Crear Cliente");

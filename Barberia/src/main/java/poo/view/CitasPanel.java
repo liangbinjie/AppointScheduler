@@ -1,18 +1,50 @@
 package poo.view;
 
+import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import poo.barberia.AppointScheduler;
+import poo.barberia.Cita;
+import poo.view.Citas.ConsultarCita;
+import poo.view.Citas.CrearCita;
+import poo.view.Citas.EliminarCita;
+import poo.view.Citas.ModificarCita;
+
 /**
  *
  * @author 123
  */
 public class CitasPanel extends javax.swing.JPanel {
-
+    JFrame parent;
     /**
      * Creates new form HomePanel
+     * @param parent
      */
-    public CitasPanel() {
+    public CitasPanel(JFrame parent) {
         initComponents();
+        this.parent = parent;
+        actualizarTabla();
     }
 
+    private void actualizarTabla() {
+        DefaultTableModel tablaClientes = (DefaultTableModel)tablaCitas.getModel();
+        AppointScheduler as = AppointScheduler.getInstance();
+        HashMap <String, Cita> listaCitas = as.obtenerListaCitas();
+        
+        tablaClientes.setRowCount(0);
+        
+        for (HashMap.Entry<String, Cita> entry : listaCitas.entrySet()) {
+            Cita c = entry.getValue();
+            Object[] fila = new Object[5];
+            fila[0] = c.getCliente().getNombre();
+            fila[1] = c.getCliente().getApellido();
+            fila[2] = c.getDiaCita();
+            fila[3] = c.getHoraCita();
+            fila[4] = c.getEstadoCita();
+            tablaClientes.addRow(fila);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +63,8 @@ public class CitasPanel extends javax.swing.JPanel {
         deleteBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
         controlMsg = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCitas = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(620, 550));
 
@@ -46,21 +80,38 @@ public class CitasPanel extends javax.swing.JPanel {
 
         btnPanel.setBackground(new java.awt.Color(0, 108, 103));
 
-        searchBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\buscar.png")); // NOI18N
         searchBtn.setToolTipText("Buscar Cita");
         searchBtn.setContentAreaFilled(false);
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
-        modifyBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\NetBeansProjects\\Barberia\\src\\main\\resources\\pencil.png")); // NOI18N
         modifyBtn.setToolTipText("Modificar Cita");
         modifyBtn.setContentAreaFilled(false);
+        modifyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         deleteBtn.setToolTipText("Eliminar Cita");
         deleteBtn.setContentAreaFilled(false);
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
-        createBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\agenda.png")); // NOI18N
         createBtn.setToolTipText("Agendar Cita");
         createBtn.setContentAreaFilled(false);
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnPanelLayout = new javax.swing.GroupLayout(btnPanel);
         btnPanel.setLayout(btnPanelLayout);
@@ -95,6 +146,18 @@ public class CitasPanel extends javax.swing.JPanel {
         controlMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(controlMsg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 476, 550, -1));
 
+        tablaCitas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Dia", "Hora", "Estado"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaCitas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,7 +172,31 @@ public class CitasPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        ConsultarCita ventana = new ConsultarCita(this);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_searchBtnActionPerformed
 
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        // TODO add your handling code here:
+        CrearCita ventana = new CrearCita(this);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
+        // TODO add your handling code here:
+        ModificarCita ventana = new ModificarCita(this);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_modifyBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        EliminarCita ventana = new EliminarCita(this);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnPanel;
     private javax.swing.JLabel controlMsg;
@@ -117,8 +204,18 @@ public class CitasPanel extends javax.swing.JPanel {
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton modifyBtn;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JTable tablaCitas;
     // End of variables declaration//GEN-END:variables
+
+    public Object getCitasPanel() {
+         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public DefaultTableModel getTableModel() {
+        return (DefaultTableModel)tablaCitas.getModel();
+    }
 }

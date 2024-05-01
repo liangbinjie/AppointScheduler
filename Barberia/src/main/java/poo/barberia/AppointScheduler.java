@@ -3,6 +3,7 @@
  */
 package poo.barberia;
 
+import com.toedter.calendar.JDateChooser;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -112,17 +113,16 @@ public class AppointScheduler implements Serializable {
     }
     
     //Metodos de Cita
-    public void crearCita(String email, LocalDateTime horaCita, 
-            LocalDateTime diaCita) throws Exception {
+    public void crearCita(String email, String horaCita, String diaCita) throws Exception {
         if (!clientes.containsKey(email))
-            throw new Exception("El email de la persona no existe");
+            throw new Exception("El cliente no existe");
         Cliente cliente = clientes.get(email);
         citas.put(email, new Cita(cliente, horaCita, diaCita,
-                EstadoCita.CONFIRMADA));
+                EstadoCita.NO_CONFIRMADA));
     }
     
-    public void modificarCita(String email, Cliente clienteActualizado, LocalDateTime horaCita, 
-            LocalDateTime diaCita) 
+    public void modificarCita(String email, Cliente clienteActualizado, String horaCita, 
+            String diaCita) 
             throws Exception{
         Cita cita = citas.get(email);
         if (cita != null) {
@@ -153,7 +153,7 @@ public class AppointScheduler implements Serializable {
             System.out.println("email: " + cita);
             System.out.println("Cliente: " + cita.getCliente());
             System.out.println("Fecha: " + cita.getDiaCita());
-            System.out.println("Hora: " + cita.getEstadoCita());
+            System.out.println("Hora: " + cita.getHoraCita());
             System.out.println("Estado: " + cita.getEstadoCita());
         } else {
             throw new Exception("No se encontró una cita con ID " + email + ".");
@@ -169,6 +169,10 @@ public class AppointScheduler implements Serializable {
             throw new Exception("No se puede confirmar la cita con ID " +
                     email + ". La cita no existe o ya está confirmada.");
         }
+    }
+    
+    public HashMap<String, Cita> obtenerListaCitas() {
+        return (HashMap<String, Cita>) citas;
     }
     
     //Métodos de Cola de Espera

@@ -2,36 +2,39 @@ package poo.barberia;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import com.toedter.calendar.JDateChooser;
+
 /**
  *
  * @author Armando Garcia
  */
 public class Cita implements Serializable {
-        private LocalDateTime horaCita;
-        private LocalDateTime diaCita;
+        private String horaCita;
+        //private LocalDateTime diaCita;
         private Cliente cliente;
         private EstadoCita estado;
+        private String diaCita;
 
-    public Cita(Cliente cliente, LocalDateTime horaCita, LocalDateTime diaCita, EstadoCita estado) {
+    public Cita(Cliente cliente, String horaCita, String diaCita, EstadoCita estado) {
         this.horaCita = horaCita;
         this.diaCita = diaCita;
         this.cliente = cliente;
         this.estado = EstadoCita.NO_CONFIRMADA;
     }
 
-    public LocalDateTime getHoraCita() {
+    public String getHoraCita() {
         return horaCita;
     }
 
-    public void setHoraCita(LocalDateTime horaCita) {
+    public void setHoraCita(String horaCita) {
         this.horaCita = horaCita;
     }
 
-    public LocalDateTime getDiaCita() {
+    public String getDiaCita() {
         return diaCita;
     }
 
-    public void setDiaCita(LocalDateTime diaCita) {
+    public void setDiaCita(String diaCita) {
         this.diaCita = diaCita;
     }
 

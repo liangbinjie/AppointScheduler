@@ -219,7 +219,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_clienteBtnActionPerformed
 
     private void citaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_citaBtnActionPerformed
-        showPanel(new CitasPanel());
+        showPanel(new CitasPanel(this));
     }//GEN-LAST:event_citaBtnActionPerformed
 
     private void serviceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceBtnActionPerformed
@@ -238,7 +238,7 @@ public class Dashboard extends javax.swing.JFrame {
         AppointScheduler c = AppointScheduler.getInstance();
         try {
             AppointScheduler.guardarDatos(c);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             System.out.println(ex);
         }
     }//GEN-LAST:event_formWindowClosing
