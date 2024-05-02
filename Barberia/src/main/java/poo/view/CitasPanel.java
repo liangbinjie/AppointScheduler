@@ -81,6 +81,7 @@ public class CitasPanel extends javax.swing.JPanel {
 
         btnPanel.setBackground(new java.awt.Color(0, 108, 103));
 
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
         searchBtn.setToolTipText("Buscar Cita");
         searchBtn.setContentAreaFilled(false);
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +90,7 @@ public class CitasPanel extends javax.swing.JPanel {
             }
         });
 
+        modifyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pencil.png"))); // NOI18N
         modifyBtn.setToolTipText("Modificar Cita");
         modifyBtn.setContentAreaFilled(false);
         modifyBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +108,7 @@ public class CitasPanel extends javax.swing.JPanel {
             }
         });
 
+        createBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agenda.png"))); // NOI18N
         createBtn.setToolTipText("Agendar Cita");
         createBtn.setContentAreaFilled(false);
         createBtn.addActionListener(new java.awt.event.ActionListener() {

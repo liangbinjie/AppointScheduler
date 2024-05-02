@@ -88,6 +88,8 @@ public class AppointScheduler implements Serializable {
         Cita cita = citas.get(email);
         if(existeCliente(email) && !existeClienteColaEspera(email) && cita == null){
             clientes.remove(email);
+        } else if (!existeCliente(email)) {
+          throw new Exception("Cliente no existe");  
         } else {
             if(existeClienteColaEspera(email)){
                 throw new Exception("El cliente e encuentra en la lista de espera.");
@@ -265,6 +267,9 @@ public class AppointScheduler implements Serializable {
     
     public void eliminarServicio(int id) {
         try {
+//            citas.forEach((correo, cita) -> {
+//               if () 
+//            });
             servicios.remove(id-1);
             mostrarMensajeExitoso("Servicio eliminado");
         } catch (Exception ex) {

@@ -41,7 +41,7 @@ public class CrearCliente extends javax.swing.JFrame {
     
     private void cerrarVentana() {
         this.parent.setEnabled(true);
-        dispose(); // Cierra la ventana actual
+        this.dispose(); // Cierra la ventana actual
     }
 
     /**
@@ -67,6 +67,11 @@ public class CrearCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -166,16 +171,14 @@ public class CrearCliente extends javax.swing.JFrame {
         String telefono = txtTelefono.getText();
         try {
             Object[] data = {email, nombre, apellido, telefono};
-
-            DefaultTableModel tableModel = clientesPanel.getClientesTableModel();
-            tableModel.addRow(data);
-            
             a.crearCliente(email, nombre, apellido, telefono);
             JOptionPane.showMessageDialog(this, "Cliente creado.");
-            this.dispose();
+            DefaultTableModel tableModel = clientesPanel.getClientesTableModel();
+            tableModel.addRow(data);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
+        cerrarVentana();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -185,6 +188,10 @@ public class CrearCliente extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrarVentana();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

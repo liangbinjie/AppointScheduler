@@ -14,12 +14,14 @@ public class Cita implements Serializable {
         private Cliente cliente;
         private EstadoCita estado;
         private String diaCita;
+        private Servicio servicio;
 
     public Cita(Cliente cliente, String horaCita, String diaCita, EstadoCita estado) {
         this.horaCita = horaCita;
         this.diaCita = diaCita;
         this.cliente = cliente;
         this.estado = EstadoCita.NO_CONFIRMADA;
+        this.servicio = null;
     }
 
     public String getHoraCita() {

@@ -190,9 +190,11 @@ public class ModificarCliente extends javax.swing.JFrame {
         String telefono = txtTelefono.getText();
         try {
             a.modificarCliente(email, nombre, apellido, telefono);
+            JOptionPane.showMessageDialog(null, "Cliente modificado, actualiza el panel");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
+        cerrarVentana();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

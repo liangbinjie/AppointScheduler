@@ -177,7 +177,7 @@ public class EliminarCliente extends javax.swing.JFrame {
             txtApellido.setText(c.getApellido());
             txtTelefono.setText(c.getTelefono());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -186,9 +186,11 @@ public class EliminarCliente extends javax.swing.JFrame {
         String email = txtEmail.getText();
         try {
             a.eliminarCliente(email);
+            JOptionPane.showMessageDialog(null, "Cliente eliminado, actualiza el panel");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
+        cerrarVentana();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

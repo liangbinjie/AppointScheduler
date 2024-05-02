@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -26,7 +27,10 @@ import poo.view.CitasPanel;
  * @author ochxn
  */
 public class CrearCita extends javax.swing.JFrame {
+
     JFrame parent;
+
+//    JFrame mainFrame;
     CitasPanel citasPanel;
     /**
      * Creates new form CrearCita

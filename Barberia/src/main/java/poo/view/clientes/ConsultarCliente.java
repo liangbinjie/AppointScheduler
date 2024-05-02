@@ -43,7 +43,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
     
     private void cerrarVentana() {
         this.parent.setEnabled(true);
-        dispose(); // Cierra la ventana actual
+        this.dispose(); // Cierra la ventana actual
     }
 
     /**
@@ -168,7 +168,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
             txtApellido.setText(c.getApellido());
             txtTelefono.setText(c.getTelefono());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
