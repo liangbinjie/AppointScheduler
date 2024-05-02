@@ -117,12 +117,12 @@ public class AppointScheduler implements Serializable {
     }
     
     //Metodos de Cita
-    public void crearCita(String email, String horaCita, String diaCita) throws Exception {
+    public void crearCita(String email, String horaCita, String diaCita, int index) throws Exception {
         if (!clientes.containsKey(email))
             throw new Exception("El cliente no existe");
         Cliente cliente = clientes.get(email);
-        citas.put(email, new Cita(cliente, horaCita, diaCita,
-                EstadoCita.NO_CONFIRMADA));
+        citas.put(email, new Cita(cliente, horaCita, diaCita, obtenerServicio(index+1)));
+        System.out.println(servicios.get(index).getNombre());
     }
     
     public void modificarCita(String email, Cliente clienteActualizado, String horaCita, 
@@ -182,14 +182,24 @@ public class AppointScheduler implements Serializable {
     
     public ArrayList<Cita> obtenerListaCitasNoConfirmadas() {
         LocalDate siguienteDia = LocalDate.now().plusDays(1);
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+        
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-YYYY");
         String diaFormat = siguienteDia.format(formato);  
+        System.out.println(diaFormat);
         ArrayList<Cita> lista = new ArrayList<>();
         citas.forEach((correo, cita) -> {
-            if (cita.getEstadoCita() == EstadoCita.NO_CONFIRMADA && cita.getDiaCita() == diaFormat) {
+            System.out.println(cita.getDiaCita());
+            System.out.println(cita.getEstado().toString());
+            if ((cita.getEstadoCita() == EstadoCita.NO_CONFIRMADA) && (cita.getDiaCita().equals(diaFormat))) {
                 lista.add(cita);
             };
         });
+        if (lista.isEmpty()) {
+            System.out.println("vacio");
+        }
+        for (Cita c: lista) {
+            System.out.println(c.getCliente().getEmail());
+        }
         return lista;
     }
     
@@ -241,6 +251,7 @@ public class AppointScheduler implements Serializable {
         return servicios.get(id-1);
     }
     
+    
     public void crearServicio(String nombre) {
         servicios.add(new Servicio(nombre));
         mostrarMensajeExitoso("Servicio creado");
@@ -279,6 +290,14 @@ public class AppointScheduler implements Serializable {
     
     public ArrayList<Servicio> obtenerListaServicios() {
         return servicios;
+    }
+    
+    public ArrayList<String> obtenerListaServiciosString() {
+        ArrayList<String> lista = new ArrayList<>();
+        for (Servicio s: servicios) {
+            lista.add(s.getNombre());
+        }
+        return lista;
     }
     
     

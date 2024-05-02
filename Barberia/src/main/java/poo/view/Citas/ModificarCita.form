@@ -139,7 +139,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAceptar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aceptar"/>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
@@ -159,7 +159,7 @@
           <Font name="Segoe UI" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Crear Cita"/>
+        <Property name="text" type="java.lang.String" value="Modificar Cita"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>
@@ -180,7 +180,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarCliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
+        <Property name="text" type="java.lang.String" value="Buscar Cita"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarClienteActionPerformed"/>

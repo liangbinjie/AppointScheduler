@@ -16,13 +16,30 @@ public class Cita implements Serializable {
         private String diaCita;
         private Servicio servicio;
 
-    public Cita(Cliente cliente, String horaCita, String diaCita, EstadoCita estado) {
+    public Cita(Cliente cliente, String horaCita, String diaCita, Servicio servicio) {
         this.horaCita = horaCita;
         this.diaCita = diaCita;
         this.cliente = cliente;
         this.estado = EstadoCita.NO_CONFIRMADA;
-        this.servicio = null;
+        this.servicio = servicio;
     }
+
+    public EstadoCita getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoCita estado) {
+        this.estado = estado;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+    
 
     public String getHoraCita() {
         return horaCita;

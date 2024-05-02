@@ -40,6 +40,10 @@ public class CrearCita extends javax.swing.JFrame {
         this.citasPanel = citasPanel;
         this.parent = parent;
         this.parent.setEnabled(false);
+        AppointScheduler c = AppointScheduler.getInstance();
+        for (String s: c.obtenerListaServiciosString()) {
+            this.serviciosCB.addItem(s);
+        }
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -82,10 +86,10 @@ public class CrearCita extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtFechaCita = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        Date date = new Date();
-        SpinnerDateModel sm =
-        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
-        horaSpinner = new javax.swing.JSpinner(sm);
+        jLabel1 = new javax.swing.JLabel();
+        serviciosCB = new javax.swing.JComboBox<>();
+        horaSpinner = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -102,19 +106,23 @@ public class CrearCita extends javax.swing.JFrame {
             }
         });
 
+        txtNombre.setEnabled(false);
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
 
+        txtApellido.setEnabled(false);
+
+        txtTelefono.setEnabled(false);
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
             }
         });
 
-        btnAceptar.setText("Aceptar");
+        btnAceptar.setText("Crear Cita");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -150,9 +158,18 @@ public class CrearCita extends javax.swing.JFrame {
 
         jLabel7.setText("Hora de cita:");
 
-        JSpinner.DateEditor de = new JSpinner.DateEditor(horaSpinner, "HH:00");
-        horaSpinner.setEditor(de);
-        horaSpinner.setToolTipText("");
+        jLabel1.setText("Servicios");
+
+        serviciosCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviciosCBActionPerformed(evt);
+            }
+        });
+
+        horaSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText(":00");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,6 +194,7 @@ public class CrearCita extends javax.swing.JFrame {
                                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
@@ -184,7 +202,12 @@ public class CrearCita extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtFechaCita, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                     .addComponent(txtTelefono)
-                                    .addComponent(horaSpinner))))
+                                    .addComponent(serviciosCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(horaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -228,8 +251,13 @@ public class CrearCita extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(horaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                    .addComponent(horaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(serviciosCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -238,28 +266,28 @@ public class CrearCita extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         AppointScheduler a = AppointScheduler.getInstance();
         String emailCliente = txtEmail.getText();
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String horaCita = txtEmail.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
+        String horaCita = horaSpinner.getValue().toString();
+        System.out.println(horaCita);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
         String diaCita = sdf.format(txtFechaCita.getDate());
+        int servicio = serviciosCB.getSelectedIndex();
         
         try {
-            Object[] data = {nombre, apellido, diaCita, horaCita};
+            Object[] data = {emailCliente, diaCita, horaCita, servicio};
 
             DefaultTableModel tableModel = citasPanel.getTableModel();
             tableModel.addRow(data);
             
-            a.crearCita(emailCliente, diaCita, horaCita);
-            JOptionPane.showMessageDialog(this, "Cita creada.");
-            this.dispose();
+            a.crearCita(emailCliente, horaCita, diaCita, servicio);
+            JOptionPane.showMessageDialog(null, "Cita creada.");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
+        cerrarVentana();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        cerrarVentana();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
@@ -272,7 +300,7 @@ public class CrearCita extends javax.swing.JFrame {
             txtApellido.setText(c.getApellido());
             txtTelefono.setText(c.getTelefono());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
         
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
@@ -289,21 +317,28 @@ public class CrearCita extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
+    private void serviciosCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviciosCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serviciosCBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JSpinner horaSpinner;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JComboBox<String> serviciosCB;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEmail;
     private com.toedter.calendar.JDateChooser txtFechaCita;

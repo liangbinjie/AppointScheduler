@@ -82,7 +82,7 @@ public class EliminarCita extends javax.swing.JFrame {
 
         jLabel5.setText("Teléfono: ");
 
-        btnAceptar.setText("Aceptar");
+        btnAceptar.setText("Eliminar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -107,7 +107,7 @@ public class EliminarCita extends javax.swing.JFrame {
 
         jLabel4.setText("Apellido: ");
 
-        btnBuscarCliente.setText("Buscar Cliente");
+        btnBuscarCliente.setText("Buscar Cita");
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);

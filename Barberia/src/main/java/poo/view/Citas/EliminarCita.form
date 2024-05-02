@@ -135,7 +135,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAceptar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Aceptar"/>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
@@ -176,7 +176,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscarCliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
+        <Property name="text" type="java.lang.String" value="Buscar Cita"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarClienteActionPerformed"/>

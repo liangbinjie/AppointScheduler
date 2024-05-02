@@ -37,12 +37,11 @@ public class CitasPanel extends javax.swing.JPanel {
         for (HashMap.Entry<String, Cita> entry : listaCitas.entrySet()) {
             Cita c = entry.getValue();
             Object[] fila = new Object[6];
-            fila[0] = c.getCliente().getNombre();
-            fila[1] = c.getCliente().getApellido();
-            fila[2] = c.getCliente().getEmail();
-            fila[3] = c.getDiaCita();
-            fila[4] = c.getHoraCita();
-            fila[5] = c.getEstadoCita();
+            fila[0] = c.getCliente().getEmail();
+            fila[1] = c.getDiaCita();
+            fila[2] = c.getHoraCita();
+            fila[3] = c.getEstadoCita();
+            fila[4] = c.getServicio();
             tablaClientes.addRow(fila);
         }
     }
@@ -64,6 +63,7 @@ public class CitasPanel extends javax.swing.JPanel {
         modifyBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
+        deleteBtn1 = new javax.swing.JButton();
         controlMsg = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCitas = new javax.swing.JTable();
@@ -118,6 +118,15 @@ public class CitasPanel extends javax.swing.JPanel {
             }
         });
 
+        deleteBtn1.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\mail.png")); // NOI18N
+        deleteBtn1.setToolTipText("Eliminar Cita");
+        deleteBtn1.setContentAreaFilled(false);
+        deleteBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout btnPanelLayout = new javax.swing.GroupLayout(btnPanel);
         btnPanel.setLayout(btnPanelLayout);
         btnPanelLayout.setHorizontalGroup(
@@ -128,7 +137,8 @@ public class CitasPanel extends javax.swing.JPanel {
                     .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnPanelLayout.setVerticalGroup(
@@ -142,10 +152,12 @@ public class CitasPanel extends javax.swing.JPanel {
                 .addComponent(modifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
-        jPanel1.add(btnPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, -1, -1));
+        jPanel1.add(btnPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, -1, 410));
 
         controlMsg.setForeground(new java.awt.Color(255, 102, 51));
         controlMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -156,7 +168,7 @@ public class CitasPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Email", "Dia", "Hora", "Estado"
+                "Email", "Dia", "Hora", "Estado", "Servicio"
             }
         ));
         tablaCitas.setPreferredSize(new java.awt.Dimension(300, 0));
@@ -202,12 +214,18 @@ public class CitasPanel extends javax.swing.JPanel {
         ventana.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
+    private void deleteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn1ActionPerformed
+        AppointScheduler c = AppointScheduler.getInstance();
+        c.sendEmail(c.obtenerListaCitasNoConfirmadas());
+    }//GEN-LAST:event_deleteBtn1ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnPanel;
     private javax.swing.JLabel controlMsg;
     private javax.swing.JButton createBtn;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton deleteBtn1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

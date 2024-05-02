@@ -82,7 +82,7 @@ public class ModificarCita extends javax.swing.JFrame {
 
         jLabel5.setText("Teléfono: ");
 
-        btnAceptar.setText("Aceptar");
+        btnAceptar.setText("Modificar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -98,7 +98,7 @@ public class ModificarCita extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Crear Cita");
+        lblTitulo.setText("Modificar Cita");
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setText("Email: ");
@@ -107,7 +107,7 @@ public class ModificarCita extends javax.swing.JFrame {
 
         jLabel4.setText("Apellido: ");
 
-        btnBuscarCliente.setText("Buscar Cliente");
+        btnBuscarCliente.setText("Buscar Cita");
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarClienteActionPerformed(evt);
