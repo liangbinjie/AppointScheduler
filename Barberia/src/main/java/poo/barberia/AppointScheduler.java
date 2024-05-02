@@ -341,25 +341,26 @@ public class AppointScheduler implements Serializable {
 //            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));  *** PONER LOS RECIPIENTES ***
             for (Cita c: listaCitasNoConfirmadas) {
                 if (c.getEstadoCita() == EstadoCita.NO_CONFIRMADA) {
-                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(c.getCliente().getEmail()));
+                    message.setRecipient(Message.RecipientType.TO, new InternetAddress(c.getCliente().getEmail()));
+                    String msgStyled = "  <p>Saludos cordiales " + c.getCliente().getNombre() +",</p>\n" +
+                            "  <p>Tienes agendada una cita para el día de mañana en <strong>Barberia POO</strong> a las <strong>" + c.getHoraCita() +"</strong></p>\n" +
+                            "  <p>Por favor, confirma tu asistencia llamando al <strong>2572-2761</strong>. Si no confirmas, podrías perder tu espacio.</p>\n" +
+                            "  <p>Atentamente,</p>\n" +
+                            "  <p><strong>Barberia POO</strong></p>\n" +
+                            "  <p><strong>Teléfono:</strong> 2572-2761</p>";
+                    MimeBodyPart mimeBodyPart = new MimeBodyPart();
+                    mimeBodyPart.setContent(msgStyled, "text/html; charset=utf-8");
+
+                    Multipart multipart = new MimeMultipart();
+                    multipart.addBodyPart(mimeBodyPart);
+                    message.setSubject("Confirmacion de cita");
+                    message.setContent(multipart);
+
+                    Transport.send(message);
                 }
             }
             
-            String msgStyled = "  <p>Saludos cordiales [CLIENTE],</p>\n" +
-                            "  <p>Tienes agendada una cita para el día de mañana en <strong>Barberia POO</strong></p>\n" +
-                            "  <p>Por favor, confirma tu asistencia llamando al <strong>[TELEFONO_NEGOCIO]</strong>. Si no confirmas, podrías perder tu espacio.</p>\n" +
-                            "  <p>Atentamente,</p>\n" +
-                            "  <p><strong>Barberia POO</strong></p>\n" +
-                            "  <p><strong>Teléfono:</strong> [TELEFONO]</p>";
-            MimeBodyPart mimeBodyPart = new MimeBodyPart();
-            mimeBodyPart.setContent(msgStyled, "text/html; charset=utf-8");
-
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(mimeBodyPart);
-            message.setSubject("Confirmacion de cita");
-            message.setContent(multipart);
-
-            Transport.send(message);
+            
 
             JOptionPane.showMessageDialog(null, "Correo enviado");
 
