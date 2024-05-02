@@ -123,7 +123,9 @@ public class AppointScheduler implements Serializable {
         if (!clientes.containsKey(email))
             throw new Exception("El cliente no existe");
         Cliente cliente = clientes.get(email);
-        citas.put(email, new Cita(cliente, horaCita, diaCita, obtenerServicio(index+1)));
+        Cita cita = new Cita(cliente, horaCita, diaCita, obtenerServicio(index+1));
+        consultarCliente(email).setCita(cita);
+        citas.put(email, cita);
         System.out.println(servicios.get(index).getNombre());
     }
     
@@ -136,6 +138,7 @@ public class AppointScheduler implements Serializable {
             cita.setDiaCita(diaCita);
             cita.setHoraCita(horaCita);
             System.err.println("Cita modificada exitosamente");
+            consultarCliente(email).setCita(cita);
             }
         else {
             throw new Exception("Este usuario no tiene ninguna cita asignada");
@@ -145,8 +148,9 @@ public class AppointScheduler implements Serializable {
     public void eliminarCita (String email) throws Exception {
         Cita cita = citas.get(email);
         if (cita != null) {
-            citas.remove(cita);
-            System.out.println("La cita de " + email + "ha sido eliminada");
+            citas.remove(email);
+            consultarCliente(email).setCita(null);
+            System.out.println("La cita de " + email + " ha sido eliminada");
         }
         else {
             throw new Exception("Este cliente no tiene cita para eliminarse");
@@ -157,11 +161,6 @@ public class AppointScheduler implements Serializable {
         Cita cita = citas.get(email);
         if (cita != null) {
             return cita;
-//            System.out.println("email: " + cita);
-//            System.out.println("Cliente: " + cita.getCliente());
-//            System.out.println("Fecha: " + cita.getDiaCita());
-//            System.out.println("Hora: " + cita.getHoraCita());
-//            System.out.println("Estado: " + cita.getEstadoCita());
         } else {
             throw new Exception("No se encontró una cita con ID " + email + ".");
         }

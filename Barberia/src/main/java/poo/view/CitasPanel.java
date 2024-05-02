@@ -2,6 +2,7 @@ package poo.view;
 
 import java.util.HashMap;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import poo.barberia.AppointScheduler;
 import poo.barberia.Cita;
@@ -216,7 +217,11 @@ public class CitasPanel extends javax.swing.JPanel {
 
     private void deleteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn1ActionPerformed
         AppointScheduler c = AppointScheduler.getInstance();
-        c.sendEmail(c.obtenerListaCitasNoConfirmadas());
+        try {
+            c.sendEmail(c.obtenerListaCitasNoConfirmadas());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No hay citas NO CONFIRMADAS para mañana");
+        }
     }//GEN-LAST:event_deleteBtn1ActionPerformed
 
     

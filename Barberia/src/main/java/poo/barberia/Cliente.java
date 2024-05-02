@@ -12,7 +12,7 @@ public class Cliente implements Serializable {
     private String nombre;
     private String apellido;
     private String telefono;
-    private List<Cita> citas;
+    private Cita cita;
     
     Cliente(String email, String nombre, String apellido, String telefono) throws Exception{
         boolean emailValido = validEmail(email);
@@ -85,4 +85,14 @@ public class Cliente implements Serializable {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public Cita getCita() {
+        return cita;
+    }
+
+    public void setCita(Cita cita) {
+        this.cita = cita;
+    }
+    
+    
 }

@@ -122,10 +122,15 @@ public class ConsultarCita extends javax.swing.JFrame {
             }
         });
 
+        txtFechaCita.setEnabled(false);
         jScrollPane1.setViewportView(txtFechaCita);
 
+        jScrollPane2.setEnabled(false);
+
+        txtHora.setEnabled(false);
         jScrollPane2.setViewportView(txtHora);
 
+        txtServicio.setEnabled(false);
         jScrollPane3.setViewportView(txtServicio);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -240,6 +245,14 @@ public class ConsultarCita extends javax.swing.JFrame {
         AppointScheduler a = AppointScheduler.getInstance();
         String email = txtEmail.getText();
         try {
+//            Cliente c = a.consultarCliente(email);
+//            txtNombre.setText(c.getNombre());
+//            txtApellido.setText(c.getApellido());
+//            txtTelefono.setText(c.getTelefono());
+//            txtFechaCita.setText(c.getCita().getDiaCita());
+//            txtHora.setText(c.getCita().getHoraCita() + ":00");
+//            txtServicio.setText(c.getCita().getServicio().getNombre());
+
             Cita c = a.consultarCita(email);
             txtNombre.setText(c.getCliente().getNombre());
             txtApellido.setText(c.getCliente().getApellido());
