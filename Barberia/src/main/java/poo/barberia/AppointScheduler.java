@@ -147,14 +147,15 @@ public class AppointScheduler implements Serializable {
         }
     }
     
-    public void consultarCita(String email) throws Exception {
+    public Cita consultarCita(String email) throws Exception {
         Cita cita = citas.get(email);
         if (cita != null) {
-            System.out.println("email: " + cita);
-            System.out.println("Cliente: " + cita.getCliente());
-            System.out.println("Fecha: " + cita.getDiaCita());
-            System.out.println("Hora: " + cita.getHoraCita());
-            System.out.println("Estado: " + cita.getEstadoCita());
+            return cita;
+//            System.out.println("email: " + cita);
+//            System.out.println("Cliente: " + cita.getCliente());
+//            System.out.println("Fecha: " + cita.getDiaCita());
+//            System.out.println("Hora: " + cita.getHoraCita());
+//            System.out.println("Estado: " + cita.getEstadoCita());
         } else {
             throw new Exception("No se encontró una cita con ID " + email + ".");
         }

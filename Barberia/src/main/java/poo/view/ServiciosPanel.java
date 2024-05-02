@@ -1,5 +1,6 @@
 package poo.view;
 
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import poo.barberia.AppointScheduler;
@@ -18,21 +19,27 @@ public class ServiciosPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form HomePanel
+     * @param parent
      */
     public ServiciosPanel(JFrame parent) {
         initComponents();
         this.parent = parent;
         actualizarTabla();
-        
     }
     
     private void actualizarTabla() {
         DefaultTableModel mt = (DefaultTableModel) tabla.getModel();
         AppointScheduler c = AppointScheduler.getInstance();
+        List<Servicio> listaServicios = c.obtenerListaServicios();
+        
+        mt.setRowCount(0);
         
         int cont = 1;
-        for (Servicio s: c.obtenerListaServicios()) {
-            mt.addRow(new Object[] {cont, s.getNombre()});
+        for (Servicio s: listaServicios) {
+            Object[] fila = new Object[2];
+            fila[0] = cont;
+            fila[1] = s.getNombre();
+            mt.addRow(fila);
             cont++;
         }
     }
@@ -196,22 +203,22 @@ public class ServiciosPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        BuscarServicioPanel v = new BuscarServicioPanel(parent);
+        BuscarServicioPanel v = new BuscarServicioPanel(this);
         v.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        CrearServicioPanel v = new CrearServicioPanel(parent);
+        CrearServicioPanel v = new CrearServicioPanel(this);
         v.setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
-        ModificarServicio v = new ModificarServicio(parent);
+        ModificarServicio v = new ModificarServicio(this);
         v.setVisible(true);
     }//GEN-LAST:event_modifyBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        EliminarServicio v = new EliminarServicio(parent);
+        EliminarServicio v = new EliminarServicio(this);
         v.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 

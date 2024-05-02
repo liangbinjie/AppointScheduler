@@ -7,7 +7,6 @@ package poo.view;
  */
 import java.util.HashMap;
 import javax.swing.JFrame;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import poo.barberia.AppointScheduler;
 import poo.barberia.Cliente;
@@ -157,7 +156,7 @@ public class ClientesPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tablaCientes);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -193,7 +192,7 @@ public class ClientesPanel extends javax.swing.JPanel {
         ventana.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    public DefaultTableModel getTableModel() {
+    public DefaultTableModel getClientesTableModel() {
         return (DefaultTableModel) tablaCientes.getModel();
     }
 

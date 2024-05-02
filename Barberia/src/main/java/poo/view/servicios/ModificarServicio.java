@@ -6,17 +6,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import poo.barberia.AppointScheduler;
 import poo.barberia.Servicio;
+import poo.view.ServiciosPanel;
 
 public class ModificarServicio extends javax.swing.JFrame {
-    JFrame parent;
+    ServiciosPanel serviciosPanel;
     
-    public ModificarServicio(JFrame parent) {
+    public ModificarServicio(ServiciosPanel parent) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.parent = parent;
-        this.parent.setEnabled(false);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // Cambio aquí
+        this.serviciosPanel = parent;
+        this.serviciosPanel.setEnabled(false);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -26,7 +27,7 @@ public class ModificarServicio extends javax.swing.JFrame {
     }
     
     private void cerrarVentana() {
-        this.parent.setEnabled(true);
+        this.serviciosPanel.setEnabled(true);
         dispose(); // Cierra la ventana actual
     }
     
@@ -119,7 +120,7 @@ public class ModificarServicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.parent.setEnabled(true);
+        this.serviciosPanel.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
