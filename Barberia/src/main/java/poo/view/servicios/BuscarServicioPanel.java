@@ -122,8 +122,8 @@ public class BuscarServicioPanel extends javax.swing.JFrame {
         try {
             Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
             this.nameField.setText(s.getNombre());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "No hay ID especificado");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
         
         

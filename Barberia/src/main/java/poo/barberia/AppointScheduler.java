@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -144,7 +146,7 @@ public class AppointScheduler implements Serializable {
         Cita cita = citas.get(email);
         if (cita != null) {
             citas.remove(cita);
-            System.out.println("La cita de " + email + "ha sido confirmada");
+            System.out.println("La cita de " + email + "ha sido eliminada");
         }
         else {
             throw new Exception("Este cliente no tiene cita para eliminarse");
@@ -257,12 +259,12 @@ public class AppointScheduler implements Serializable {
         mostrarMensajeExitoso("Servicio creado");
     }
     
-    public Servicio consultarServicio(int id) {
+    public Servicio consultarServicio(int id) throws Exception {
         Servicio servicio = new Servicio();
         try {
             servicio = obtenerServicio(id);
         } catch (Exception ex) {
-            mostrarMensajeError("No se encontro el servicio");
+            throw new Exception ("No se encontro el servicio");
         }
         return servicio;
     }
@@ -276,16 +278,24 @@ public class AppointScheduler implements Serializable {
         }
     }
     
-    public void eliminarServicio(int id) {
+    public void eliminarServicio(int id) throws Exception {
+        boolean enUso = false;
         try {
-//            citas.forEach((correo, cita) -> {
-//               if () 
-//            });
-            servicios.remove(id-1);
-            mostrarMensajeExitoso("Servicio eliminado");
+            Servicio s = obtenerServicio(id);
+            for (Map.Entry<String, Cita> entry: citas.entrySet()) {
+                if (entry.getValue().getServicio() == s) {
+                    enUso = true;
+                }
+            }
+            if (enUso) {
+                throw new Exception ("Servicio en cita programada, no se puede eliminar");
+            } else {
+                servicios.remove(id-1);
+            }
+            
         } catch (Exception ex) {
-            mostrarMensajeError("No se pudo eliminar el servicio");
-        } 
+            throw new Exception ("No se encontro el servicio");
+        }
     }
     
     public ArrayList<Servicio> obtenerListaServicios() {

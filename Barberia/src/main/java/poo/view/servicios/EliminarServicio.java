@@ -3,6 +3,8 @@ package poo.view.servicios;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
@@ -130,8 +132,14 @@ public class EliminarServicio extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         AppointScheduler c = AppointScheduler.getInstance();
-        Servicio s = c.consultarServicio(Integer.parseInt(idField.getText()));
-        this.nameField.setText(s.getNombre());
+        Servicio s;
+        try {
+            s = c.consultarServicio(Integer.parseInt(idField.getText()));
+            this.nameField.setText(s.getNombre());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -143,7 +151,7 @@ public class EliminarServicio extends javax.swing.JFrame {
             }
             cerrarVentana();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No hay ID del servicio");
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 

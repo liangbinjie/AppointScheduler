@@ -119,7 +119,7 @@ public class CitasPanel extends javax.swing.JPanel {
         });
 
         deleteBtn1.setIcon(new javax.swing.ImageIcon("C:\\Users\\123\\Documents\\Codes\\AppointScheduler\\Barberia\\src\\main\\resources\\mail.png")); // NOI18N
-        deleteBtn1.setToolTipText("Eliminar Cita");
+        deleteBtn1.setToolTipText("Enviar correo de confirmacion");
         deleteBtn1.setContentAreaFilled(false);
         deleteBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

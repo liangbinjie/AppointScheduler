@@ -141,7 +141,7 @@ public class ModificarServicio extends javax.swing.JFrame {
             c.modificarServicio(Integer.parseInt(idField.getText()), this.nameField.getText());
             cerrarVentana();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No hay ID especificado");
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_changeBtnActionPerformed
 
