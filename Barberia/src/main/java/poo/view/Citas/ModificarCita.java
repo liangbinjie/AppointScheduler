@@ -229,7 +229,7 @@ public class ModificarCita extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         AppointScheduler a = AppointScheduler.getInstance();
         String emailCliente = txtEmail.getText();
-        String horaCita = horaSpinner.getValue().toString();
+        int horaCita = (int) horaSpinner.getValue();
         System.out.println(horaCita);
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-YYYY");
         String diaCita = sdf.format(txtFechaCita.getDate());

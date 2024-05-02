@@ -119,17 +119,25 @@ public class AppointScheduler implements Serializable {
     }
     
     //Metodos de Cita
-    public void crearCita(String email, String horaCita, String diaCita, int index) throws Exception {
-        if (!clientes.containsKey(email))
-            throw new Exception("El cliente no existe");
-        Cliente cliente = clientes.get(email);
-        Cita cita = new Cita(cliente, horaCita, diaCita, obtenerServicio(index+1));
-        consultarCliente(email).setCita(cita);
-        citas.put(email, cita);
-        System.out.println(servicios.get(index).getNombre());
+    public void crearCita(String email, int horaCita, String diaCita, int index) throws Exception {
+        // https://www.w3schools.com/java/java_date.asp
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(diaCita, formato);
+
+        if (!estaCerrado(date.getDayOfWeek().toString(), horaCita)) {
+            if (!clientes.containsKey(email))
+                throw new Exception("El cliente no existe");
+            Cliente cliente = clientes.get(email);
+            Cita cita = new Cita(cliente, horaCita, diaCita, obtenerServicio(index+1));
+            consultarCliente(email).setCita(cita);
+            citas.put(email, cita);
+            System.out.println(servicios.get(index).getNombre());
+        } else {
+            throw new Exception("La barberia se encuentra cerrado");
+        }
     }
     
-    public void modificarCita(String email, Cliente clienteActualizado, String horaCita, 
+    public void modificarCita(String email, Cliente clienteActualizado, int horaCita, 
             String diaCita) 
             throws Exception{
         Cita cita = citas.get(email);
@@ -400,5 +408,74 @@ public class AppointScheduler implements Serializable {
             horario.replace(dia, new Horario(dia, horaApertura, horaCierre, cerrado));
         }
         
+    }
+    
+    public boolean estaCerrado(String diaIngles, int hora) {
+        switch (diaIngles) {
+            case "MONDAY":
+                if (horario.get("Lunes").isCerrado()) {
+                    return true;
+                }
+                if (hora >= horario.get("Lunes").getHoraApertura() && hora < horario.get("Lunes").getHoraCierre()) {
+                    break;
+                } else {
+                    return true;
+                }
+            case "TUESDAY":
+                if (horario.get("Martes").isCerrado()) {
+                    return true;
+                }
+                if (hora >= horario.get("Martes").getHoraApertura() && hora < horario.get("Martes").getHoraCierre()) {
+                    break;
+                } else {
+                    return true;
+                }
+            case "WEDNESDAY":
+                if (horario.get("Miercoles").isCerrado()) {
+                    return true;
+                }
+                if (hora >= horario.get("Miercoles").getHoraApertura() && hora < horario.get("Miercoles").getHoraCierre()) {
+                    break;
+                } else {
+                    return true;
+                }
+            case "THURSDAY":
+                if (horario.get("Jueves").isCerrado()) {
+                    return true;
+                }
+                if (hora >= horario.get("Jueves").getHoraApertura() && hora < horario.get("Jueves").getHoraCierre()) {
+                    break;
+                } else {
+                    return true;
+                }
+            case "FRIDAY":
+                if (horario.get("Viernes").isCerrado()) {
+                    return true;
+                }
+                if (hora >= horario.get("Viernes").getHoraApertura() && hora < horario.get("Viernes").getHoraCierre()) {
+                    break;
+                } else {
+                    return true;
+                }
+            case "SATURDAY":
+                if (horario.get("Sabado").isCerrado()) {
+                    return true;
+                }
+                if (hora >= horario.get("Sabado").getHoraApertura() && hora < horario.get("Sabado").getHoraCierre()) {
+                    break;
+                } else {
+                    return true;
+                }
+            case "SUNDAY":
+                if (horario.get("Domingo").isCerrado()) {
+                    return true;
+                }
+                if (hora >= horario.get("Domingo").getHoraApertura() && hora < horario.get("Domingo").getHoraCierre()) {
+                    break;
+                } else {
+                    return true;
+                }
+        }
+        return false;
     }
 }

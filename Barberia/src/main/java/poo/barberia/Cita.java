@@ -9,14 +9,14 @@ import com.toedter.calendar.JDateChooser;
  * @author Armando Garcia
  */
 public class Cita implements Serializable {
-        private String horaCita;
+        private int horaCita;
         //private LocalDateTime diaCita;
         private Cliente cliente;
         private EstadoCita estado;
         private String diaCita;
         private Servicio servicio;
 
-    public Cita(Cliente cliente, String horaCita, String diaCita, Servicio servicio) {
+    public Cita(Cliente cliente, int horaCita, String diaCita, Servicio servicio) {
         this.horaCita = horaCita;
         this.diaCita = diaCita;
         this.cliente = cliente;
@@ -41,11 +41,11 @@ public class Cita implements Serializable {
     }
     
 
-    public String getHoraCita() {
+    public int getHoraCita() {
         return horaCita;
     }
 
-    public void setHoraCita(String horaCita) {
+    public void setHoraCita(int horaCita) {
         this.horaCita = horaCita;
     }
 
