@@ -27,7 +27,7 @@ public class CitasPanel extends javax.swing.JPanel {
         actualizarTabla();
     }
 
-    public void actualizarTabla() {
+    private void actualizarTabla() {
         DefaultTableModel tablaClientes = (DefaultTableModel)tablaCitas.getModel();
         AppointScheduler as = AppointScheduler.getInstance();
         HashMap <String, Cita> listaCitas = as.obtenerListaCitas();
@@ -36,12 +36,13 @@ public class CitasPanel extends javax.swing.JPanel {
         
         for (HashMap.Entry<String, Cita> entry : listaCitas.entrySet()) {
             Cita c = entry.getValue();
-            Object[] fila = new Object[5];
+            Object[] fila = new Object[6];
             fila[0] = c.getCliente().getNombre();
             fila[1] = c.getCliente().getApellido();
-            fila[2] = c.getDiaCita();
-            fila[3] = c.getHoraCita();
-            fila[4] = c.getEstadoCita();
+            fila[2] = c.getCliente().getEmail();
+            fila[3] = c.getDiaCita();
+            fila[4] = c.getHoraCita();
+            fila[5] = c.getEstadoCita();
             tablaClientes.addRow(fila);
         }
     }
@@ -155,7 +156,7 @@ public class CitasPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Dia", "Hora", "Estado"
+                "Nombre", "Apellido", "Email", "Dia", "Hora", "Estado"
             }
         ));
         tablaCitas.setPreferredSize(new java.awt.Dimension(300, 0));
@@ -220,7 +221,7 @@ public class CitasPanel extends javax.swing.JPanel {
          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public DefaultTableModel getCitasTableModel() {
+    public DefaultTableModel getTableModel() {
         return (DefaultTableModel)tablaCitas.getModel();
     }
 }

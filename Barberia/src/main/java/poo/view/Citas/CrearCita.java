@@ -27,14 +27,10 @@ import poo.view.CitasPanel;
  * @author ochxn
  */
 public class CrearCita extends javax.swing.JFrame {
-
     JFrame parent;
-
-//    JFrame mainFrame;
     CitasPanel citasPanel;
     /**
      * Creates new form CrearCita
-     * @param citasPanel
      * @param parent
      */
     public CrearCita(CitasPanel citasPanel, JFrame parent) {
@@ -55,8 +51,9 @@ public class CrearCita extends javax.swing.JFrame {
     
     private void cerrarVentana() {
         this.parent.setEnabled(true);
-        dispose(); // Cierra la ventana actual
+        this.dispose(); // Cierra la ventana actual
     }
+
     
     
     /**
@@ -85,7 +82,10 @@ public class CrearCita extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtFechaCita = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        horaSpinner = new javax.swing.JSpinner();
+        Date date = new Date();
+        SpinnerDateModel sm =
+        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        horaSpinner = new javax.swing.JSpinner(sm);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -150,6 +150,8 @@ public class CrearCita extends javax.swing.JFrame {
 
         jLabel7.setText("Hora de cita:");
 
+        JSpinner.DateEditor de = new JSpinner.DateEditor(horaSpinner, "HH:00");
+        horaSpinner.setEditor(de);
         horaSpinner.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,14 +240,14 @@ public class CrearCita extends javax.swing.JFrame {
         String emailCliente = txtEmail.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
-        String horaCita = "hora";
+        String horaCita = txtEmail.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
         String diaCita = sdf.format(txtFechaCita.getDate());
         
         try {
             Object[] data = {nombre, apellido, diaCita, horaCita};
 
-            DefaultTableModel tableModel = citasPanel.getCitasTableModel();
+            DefaultTableModel tableModel = citasPanel.getTableModel();
             tableModel.addRow(data);
             
             a.crearCita(emailCliente, diaCita, horaCita);

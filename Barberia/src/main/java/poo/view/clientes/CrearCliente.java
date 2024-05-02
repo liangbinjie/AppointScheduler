@@ -21,6 +21,7 @@ public class CrearCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form InformacionCliente
+     * @param clientesPanel
      * @param parent
      */
     public CrearCliente(ClientesPanel clientesPanel, JFrame parent) {
@@ -172,9 +173,9 @@ public class CrearCliente extends javax.swing.JFrame {
         try {
             Object[] data = {email, nombre, apellido, telefono};
             a.crearCliente(email, nombre, apellido, telefono);
-            JOptionPane.showMessageDialog(this, "Cliente creado.");
             DefaultTableModel tableModel = clientesPanel.getClientesTableModel();
             tableModel.addRow(data);
+            JOptionPane.showMessageDialog(this, "Cliente creado.");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
