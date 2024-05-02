@@ -19,6 +19,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
     ClientesPanel clientesPanel;
     /**
      * Creates new form InformacionCliente
+     * @param clientesPanel
      * @param parent
      */
     public ConsultarCliente(ClientesPanel clientesPanel, JFrame parent) {

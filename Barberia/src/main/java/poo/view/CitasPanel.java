@@ -15,6 +15,7 @@ import poo.view.Citas.ModificarCita;
  * @author 123
  */
 public class CitasPanel extends javax.swing.JPanel {
+    
     JFrame parent;
     /**
      * Creates new form HomePanel
@@ -175,25 +176,25 @@ public class CitasPanel extends javax.swing.JPanel {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-        ConsultarCita ventana = new ConsultarCita(this);
+        ConsultarCita ventana = new ConsultarCita(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        CrearCita ventana = new CrearCita(this);
+        CrearCita ventana = new CrearCita(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
         // TODO add your handling code here:
-        ModificarCita ventana = new ModificarCita(this);
+        ModificarCita ventana = new ModificarCita(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_modifyBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        EliminarCita ventana = new EliminarCita(this);
+        EliminarCita ventana = new EliminarCita(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 

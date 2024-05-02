@@ -1,7 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package poo.view.Citas;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import poo.barberia.AppointScheduler;
@@ -13,20 +18,21 @@ import poo.view.CitasPanel;
  * @author ochxn
  */
 public class EliminarCita extends javax.swing.JFrame {
+    JFrame parent;
     CitasPanel citasPanel;
     /**
      * Creates new form CrearCita
+     * @param citasPanel
      * @param parent
      */
-    public EliminarCita(CitasPanel parent) {
+    public EliminarCita(CitasPanel citasPanel, JFrame parent) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.citasPanel = parent;
+        this.citasPanel = citasPanel;
+        this.parent = parent;
+        this.parent.setEnabled(false);
         this.citasPanel.setEnabled(false);
-        txtNombre.setEnabled(false);
-        txtApellido.setEnabled(false);
-        txtTelefono.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -37,7 +43,7 @@ public class EliminarCita extends javax.swing.JFrame {
     }
     
     private void cerrarVentana() {
-        this.citasPanel.setEnabled(true);
+        this.parent.setEnabled(true);
         dispose(); // Cierra la ventana actual
     }
 
@@ -170,17 +176,11 @@ public class EliminarCita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        AppointScheduler a = AppointScheduler.getInstance();
-        String email = txtEmail.getText();
-        try {
-            a.eliminarCita(email);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed

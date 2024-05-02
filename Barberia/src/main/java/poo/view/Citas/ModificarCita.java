@@ -1,7 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package poo.view.Citas;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import poo.barberia.AppointScheduler;
@@ -13,16 +18,20 @@ import poo.view.CitasPanel;
  * @author ochxn
  */
 public class ModificarCita extends javax.swing.JFrame {
+    JFrame parent;
     CitasPanel citasPanel;
     /**
      * Creates new form CrearCita
+     * @param citasPanel
      * @param parent
      */
-    public ModificarCita(CitasPanel parent) {
+    public ModificarCita(CitasPanel citasPanel, JFrame parent) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.citasPanel = parent;
+        this.citasPanel = citasPanel;
+        this.parent = parent;
+        this.parent.setEnabled(false);
         this.citasPanel.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
         addWindowListener(new WindowAdapter() {
@@ -34,7 +43,7 @@ public class ModificarCita extends javax.swing.JFrame {
     }
     
     private void cerrarVentana() {
-        this.citasPanel.setEnabled(true);
+        this.parent.setEnabled(true);
         dispose(); // Cierra la ventana actual
     }
 
@@ -81,7 +90,7 @@ public class ModificarCita extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Modificar Cita");
+        lblTitulo.setText("Crear Cita");
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setText("Email: ");
