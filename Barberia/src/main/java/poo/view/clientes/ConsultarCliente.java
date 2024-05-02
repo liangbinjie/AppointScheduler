@@ -15,17 +15,19 @@ import poo.barberia.Cliente;
 import poo.view.ClientesPanel;
 
 public class ConsultarCliente extends javax.swing.JFrame {
+    JFrame parent;
     ClientesPanel clientesPanel;
     /**
      * Creates new form InformacionCliente
      * @param parent
      */
-    public ConsultarCliente(ClientesPanel parent) {
+    public ConsultarCliente(ClientesPanel clientesPanel, JFrame parent) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.clientesPanel = parent;
-        this.clientesPanel.setEnabled(false);
+        this.clientesPanel = clientesPanel;
+        this.parent = parent;
+        this.parent.setEnabled(false);
         txtNombre.setEnabled(false);
         txtApellido.setEnabled(false);
         txtTelefono.setEnabled(false);
@@ -39,7 +41,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
     }
     
     private void cerrarVentana() {
-        this.clientesPanel.setEnabled(true);
+        this.parent.setEnabled(true);
         dispose(); // Cierra la ventana actual
     }
 
@@ -170,7 +172,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.dispose();
+        cerrarVentana();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

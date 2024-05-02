@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -176,6 +178,27 @@ public class AppointScheduler implements Serializable {
         return (HashMap<String, Cita>) citas;
     }
     
+    public ArrayList<Cita> obtenerListaCitasNoConfirmadas() {
+        LocalDate siguienteDia = LocalDate.now().plusDays(1);
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+        String diaFormat = siguienteDia.format(formato);  
+        ArrayList<Cita> lista = new ArrayList<>();
+        citas.forEach((correo, cita) -> {
+            if (cita.getEstadoCita() == EstadoCita.NO_CONFIRMADA && cita.getDiaCita() == diaFormat) {
+                lista.add(cita);
+            };
+        });
+        return lista;
+    }
+    
+    // su funcion es eliminar todas las citas que ya pasaron su fecha
+//    public void eliminarCitas() {
+//        LocalDate dia = LocalDate.now();
+//        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+//        String diaFormat = dia.format(formato);
+//        
+//    }
+    
     //Métodos de Cola de Espera
     public ArrayList<Cliente> mostrarColaEspera(){
         return colaEspera;
@@ -255,7 +278,8 @@ public class AppointScheduler implements Serializable {
     
     
 // *************** SECCION ADMINISTRACION ****************
-    public void sendEmail(ArrayList listaCitasNoConfirmadas) {
+    // https://mkyong.com/java/javamail-api-sending-email-via-gmail-smtp-example/
+    public void sendEmail(ArrayList<Cita> listaCitasNoConfirmadas) {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.mailersend.net");
         prop.put("mail.smtp.port", "587");
@@ -274,17 +298,17 @@ public class AppointScheduler implements Serializable {
             message.setFrom(new InternetAddress(usuarioCorreo));
             
 //            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));  *** PONER LOS RECIPIENTES ***
-
-
+            for (Cita c: listaCitasNoConfirmadas) {
+                if (c.getEstadoCita() == EstadoCita.NO_CONFIRMADA) {
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(c.getCliente().getEmail()));
+                }
+            }
+            
             String msgStyled = "  <p>Saludos cordiales [CLIENTE],</p>\n" +
-                            "  <p>Tienes agendada una cita para el día de mañana en <strong>[NOMBRE_NEGOCIO]</strong> para el servicio de <strong>[SERVICIO]</strong>:</p>\n" +
-                            "  <ul>\n" +
-                            "    <li><strong>Día:</strong> [DIA]</li>\n" +
-                            "    <li><strong>Hora:</strong> [HORA]</li>\n" +
-                            "  </ul>\n" +
+                            "  <p>Tienes agendada una cita para el día de mañana en <strong>Barberia POO</strong></p>\n" +
                             "  <p>Por favor, confirma tu asistencia llamando al <strong>[TELEFONO_NEGOCIO]</strong>. Si no confirmas, podrías perder tu espacio.</p>\n" +
                             "  <p>Atentamente,</p>\n" +
-                            "  <p><strong>[NOMBRE_NEGOCIO]</strong></p>\n" +
+                            "  <p><strong>Barberia POO</strong></p>\n" +
                             "  <p><strong>Teléfono:</strong> [TELEFONO]</p>";
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msgStyled, "text/html; charset=utf-8");
@@ -334,7 +358,14 @@ public class AppointScheduler implements Serializable {
         return horario;
     }
     
-    public void establecerHorario(String dia,int horaApertura, int horaCierre, boolean cerrado) {
-        horario.replace(dia, new Horario(dia, horaApertura, horaCierre, cerrado));
+    public void establecerHorario(String dia,int horaApertura, int horaCierre, boolean cerrado) throws Exception {
+        if (horaApertura < 0 || horaApertura >= 24 || horaCierre < 0 || horaCierre >= 24) {
+            System.out.println("La hora de cierre o apertura del dia " + dia + " no es valida");
+            throw new Exception ("La hora de cierre o apertura del dia " + dia + " no es valida");
+            
+        } else {
+            horario.replace(dia, new Horario(dia, horaApertura, horaCierre, cerrado));
+        }
+        
     }
 }

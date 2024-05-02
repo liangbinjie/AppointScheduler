@@ -10,10 +10,6 @@ import poo.view.servicios.CrearServicioPanel;
 import poo.view.servicios.EliminarServicio;
 import poo.view.servicios.ModificarServicio;
 
-/**
- *
- * @author 123
- */
 public class ServiciosPanel extends javax.swing.JPanel {
     private JFrame parent;
 
@@ -203,22 +199,22 @@ public class ServiciosPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        BuscarServicioPanel v = new BuscarServicioPanel(this);
+        BuscarServicioPanel v = new BuscarServicioPanel(this, parent);
         v.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        CrearServicioPanel v = new CrearServicioPanel(this);
+        CrearServicioPanel v = new CrearServicioPanel(this, parent);
         v.setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
-        ModificarServicio v = new ModificarServicio(this);
+        ModificarServicio v = new ModificarServicio(this, parent);
         v.setVisible(true);
     }//GEN-LAST:event_modifyBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        EliminarServicio v = new EliminarServicio(this);
+        EliminarServicio v = new EliminarServicio(this, parent);
         v.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 

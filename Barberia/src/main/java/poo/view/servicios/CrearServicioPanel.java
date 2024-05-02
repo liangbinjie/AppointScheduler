@@ -11,13 +11,16 @@ import poo.barberia.Servicio;
 import poo.view.ServiciosPanel;
 
 public class CrearServicioPanel extends javax.swing.JFrame {
+    JFrame parent;
     ServiciosPanel serviciosPanel;
     
-    public CrearServicioPanel(ServiciosPanel parent) {
+    public CrearServicioPanel(ServiciosPanel serviciosPanel, JFrame parent) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.serviciosPanel = parent;
+        this.serviciosPanel = serviciosPanel;
+        this.parent = parent;
+        this.parent.setEnabled(false);
         this.serviciosPanel.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
         addWindowListener(new WindowAdapter() {
@@ -29,7 +32,7 @@ public class CrearServicioPanel extends javax.swing.JFrame {
     }
     
     private void cerrarVentana() {
-        this.serviciosPanel.setEnabled(true);
+        this.parent.setEnabled(true);
         dispose(); // Cierra la ventana actual
     }
 

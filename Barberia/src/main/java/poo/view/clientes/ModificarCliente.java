@@ -15,17 +15,19 @@ import poo.barberia.Cliente;
 import poo.view.ClientesPanel;
 
 public class ModificarCliente extends javax.swing.JFrame {
+    JFrame parent;
     ClientesPanel clientesPanel;
 
     /**
      * Creates new form InformacionCliente
      */
-    public ModificarCliente(ClientesPanel parent) {
+    public ModificarCliente(ClientesPanel clientesPanel, JFrame parent) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.clientesPanel = parent;
-        this.clientesPanel.setEnabled(false);
+        this.clientesPanel = clientesPanel;
+        this.parent = parent;
+        this.parent.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -36,7 +38,7 @@ public class ModificarCliente extends javax.swing.JFrame {
     }
     
     private void cerrarVentana() {
-        this.clientesPanel.setEnabled(true);
+        this.parent.setEnabled(true);
         dispose(); // Cierra la ventana actual
     }
 
@@ -194,7 +196,7 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        cerrarVentana();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 

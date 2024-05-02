@@ -129,10 +129,14 @@ public class AdminPanel extends javax.swing.JPanel {
         DefaultTableModel mt = (DefaultTableModel) tabla.getModel();
         AppointScheduler c = AppointScheduler.getInstance();
         for (int row=0;row<7;row++) {
+            try {
             c.establecerHorario(mt.getValueAt(row, 0).toString(),
-                    Integer.valueOf(mt.getValueAt(row, 1).toString()),
+                    Integer.valueOf(mt.getValueAt(row, 1).toString()), 
                     Integer.valueOf(mt.getValueAt(row, 2).toString()),
                     Boolean.valueOf(mt.getValueAt(row, 3).toString()));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
         }
         JOptionPane.showMessageDialog(null, "Horario actualizado");
     }//GEN-LAST:event_setBtnActionPerformed

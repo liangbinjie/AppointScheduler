@@ -80,6 +80,7 @@ public class ClientesPanel extends javax.swing.JPanel {
 
         btnPanel.setBackground(new java.awt.Color(0, 108, 103));
 
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
         searchBtn.setToolTipText("Buscar Cliente");
         searchBtn.setContentAreaFilled(false);
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +89,7 @@ public class ClientesPanel extends javax.swing.JPanel {
             }
         });
 
+        modifyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pencil.png"))); // NOI18N
         modifyBtn.setToolTipText("Modificar Cliente");
         modifyBtn.setContentAreaFilled(false);
         modifyBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +107,7 @@ public class ClientesPanel extends javax.swing.JPanel {
             }
         });
 
+        createBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/crear.png"))); // NOI18N
         createBtn.setToolTipText("Crear Cliente");
         createBtn.setContentAreaFilled(false);
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -173,22 +176,22 @@ public class ClientesPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        ConsultarCliente ventana = new ConsultarCliente(this);
+        ConsultarCliente ventana = new ConsultarCliente(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        CrearCliente ventana = new CrearCliente(this);
+        CrearCliente ventana = new CrearCliente(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtnActionPerformed
-        ModificarCliente ventana = new ModificarCliente(this);
+        ModificarCliente ventana = new ModificarCliente(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_modifyBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        EliminarCliente ventana = new EliminarCliente(this);
+        EliminarCliente ventana = new EliminarCliente(this, parent);
         ventana.setVisible(true);
     }//GEN-LAST:event_deleteBtnActionPerformed
 

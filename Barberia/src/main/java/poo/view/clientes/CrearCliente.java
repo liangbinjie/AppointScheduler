@@ -15,6 +15,7 @@ import poo.barberia.AppointScheduler;
 import poo.view.ClientesPanel;
 
 public class CrearCliente extends javax.swing.JFrame {
+    JFrame parent;
     ClientesPanel clientesPanel;
 
 
@@ -22,12 +23,13 @@ public class CrearCliente extends javax.swing.JFrame {
      * Creates new form InformacionCliente
      * @param parent
      */
-    public CrearCliente(ClientesPanel parent) {
+    public CrearCliente(ClientesPanel clientesPanel, JFrame parent) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.clientesPanel = parent;
-        this.clientesPanel.setEnabled(false);
+        this.clientesPanel = clientesPanel;
+        this.parent = parent;
+        this.parent.setEnabled(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -38,7 +40,7 @@ public class CrearCliente extends javax.swing.JFrame {
     }
     
     private void cerrarVentana() {
-        this.clientesPanel.setEnabled(true);
+        this.parent.setEnabled(true);
         dispose(); // Cierra la ventana actual
     }
 
@@ -177,7 +179,7 @@ public class CrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        cerrarVentana();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
